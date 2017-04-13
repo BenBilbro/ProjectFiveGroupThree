@@ -31,7 +31,7 @@ public class Person {
      * @param responses
      *            array of strings of the persons responses to songs
      */
-    public Person(Major major, Hobby hobby, Region region, String[] responses) {
+    public Person(Major major, Region region, Hobby hobby, String[] responses) {
         this.major = major;
         this.hobby = hobby;
         this.region = region;
@@ -76,6 +76,38 @@ public class Person {
      */
     public String[] getResponses() {
         return this.responses;
+    }
+
+
+    /**
+     * Helper method for FileRead to determine if a person has heard song
+     * 
+     * @param id
+     *            song Id to check for heard
+     * @return boolean true or false
+     */
+    public boolean getHeard(int id) {
+        if (responses.length > id) {
+            String[] strArr = responses[id].split(",");
+            return strArr[0].equals("Yes");
+        }
+        return false;
+    }
+
+
+    /**
+     * helper method for FileReader to determine if a person has liked song
+     * 
+     * @param id
+     *            song ID to check for liked
+     * @return boolean true or false
+     */
+    public boolean getLiked(int id) {
+        if (responses.length > id) {
+            String[] strArr = responses[id].split(",");
+            return strArr[1].equals("Yes");
+        }
+        return false;
     }
 
 }
