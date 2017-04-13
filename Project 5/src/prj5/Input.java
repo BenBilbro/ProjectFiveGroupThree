@@ -9,11 +9,9 @@ package prj5;
  * @version 4.11.17
  *
  */
-public class Input 
-{
-    
-    public static void main(String[] args) 
-    {
-        
+public class Input {
+
+    public static void main(String[] args) {
+        FileReader fr = new FileReader("MusicSurveyData.csv", "SongList.csv");
     }
 }

@@ -8,13 +8,16 @@ package prj5;
  *
  */
 public class LinkedList<T> {
-    private int length;
-    private Node<T> head;
+
+    protected int length;
+    protected Node<T> head;
+    protected Node<T> tail;
 
 
     public LinkedList() {
         length = 0;
         head = null;
+        tail = null;
     }
 
 
@@ -28,39 +31,58 @@ public class LinkedList<T> {
     }
 
 
-    private class Node<T> {
-        private T data;
-        private Node<T> next;
+    public void add(T anEntry) {
+        if (anEntry != null) {
+            Node<T> newNode = new Node<T>(anEntry);
+            if (isEmpty()) {
+                head = newNode;
+                tail = newNode;
+                length++;
+            }
+            else {
+                tail.next = newNode;
+                tail = tail.next;
+                length++;
+            }
+        }
+    }
 
 
-        private Node(T dataPortion) {
-            this(null, dataPortion);
+    @SuppressWarnings("hiding")
+    protected class Node<T> {
+        protected T data;
+        protected Node<T> next;
+
+
+        protected Node(T dataPortion) {
+            this(dataPortion, null);
         }
 
 
-        private Node(Node<T> nextNode, T newData) {
+        protected Node(T newData, Node<T> nextNode) {
             data = newData;
             next = nextNode;
         }
 
 
-        private void setData(T newData) {
+        protected void setData(T newData) {
             data = newData;
         }
 
 
-        private T getData() {
+        protected T getData() {
             return data;
         }
 
 
-        private void setNext(Node<T> nextNode) {
+        protected void setNext(Node<T> nextNode) {
             next = nextNode;
         }
 
 
-        private Node<T> getNext() {
+        protected Node<T> getNext() {
             return next;
         }
     }
+
 }
