@@ -32,6 +32,7 @@ public class Person {
      *            array of strings of the persons responses to songs
      */
     public Person(Major major, Region region, Hobby hobby, String[] responses) {
+
         this.major = major;
         this.hobby = hobby;
         this.region = region;
@@ -86,12 +87,12 @@ public class Person {
      *            song Id to check for heard
      * @return boolean true or false
      */
-    public boolean getHeard(int id) {
+    public String getHeard(int id) {
         if (responses.length > id) {
             String[] strArr = responses[id].split(",");
-            return strArr[0].equals("Yes");
+            return strArr[0];
         }
-        return false;
+        return "";
     }
 
 
@@ -102,12 +103,17 @@ public class Person {
      *            song ID to check for liked
      * @return boolean true or false
      */
-    public boolean getLiked(int id) {
+    public String getLiked(int id) {
         if (responses.length > id) {
             String[] strArr = responses[id].split(",");
-            return strArr[1].equals("Yes");
+            return strArr[1];
         }
-        return false;
+        return "";
+    }
+
+
+    public String toString() {
+        return "";
     }
 
 }
