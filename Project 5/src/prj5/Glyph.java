@@ -11,7 +11,7 @@ import CS2114.TextShape;
  * @author benzb
  *
  */
-public class Glyph {
+public class Glyph extends Shape {
 
     private static final int BAR_WIDTH = 100;
 

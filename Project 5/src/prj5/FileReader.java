@@ -46,17 +46,19 @@ public class FileReader extends LinkedList<Person> {
         String heard;
         String liked;
         pReader.nextLine();
+        int id = 1;
         while (pReader.hasNextLine()) {
             strArr = pReader.nextLine().split(",");
-            if (strArr.length % 2 != 0) {
+            if (strArr.length % 2 == 0) {
                 String[] temp = new String[strArr.length + 1];
                 for (int y = 0; y < strArr.length; y++) {
                     temp[y] = strArr[y];
                 }
+                temp[strArr.length] = "";
                 strArr = temp;
             }
 
-            if (strArr.length > 2) {
+            if (strArr.length > 5) {
                 major = Major.getMajor(strArr[2]);
                 region = Region.getRegion(strArr[3]);
                 hobby = Hobby.getHobby(strArr[4]);
@@ -67,6 +69,7 @@ public class FileReader extends LinkedList<Person> {
                 for (int x = 0; x < rLength; x++) {
                     responses[x] = " , ";
                 }
+
                 for (int i = 5; i < strArr.length - 1; i += 2) {
 
                     if (strArr[i].equals("")) {
@@ -83,7 +86,8 @@ public class FileReader extends LinkedList<Person> {
                     }
                     responses[(i - 5) / 2] = heard + "," + liked;
                 }
-                tempPerson = new Person(major, region, hobby, responses);
+                tempPerson = new Person(id, major, region, hobby, responses);
+                id++;
                 pList.add(tempPerson);
             }
 
@@ -93,7 +97,6 @@ public class FileReader extends LinkedList<Person> {
 // for (Object o : temp) {
 // System.out.println(((Person)o).getHobby());
 // }
-// System.out.println(temp.length + " " + pList.getLength());
         return pList;
     }
 
@@ -131,12 +134,17 @@ public class FileReader extends LinkedList<Person> {
                 likedList);
             Glyph tempGlyph = new Glyph(tempSong);
             gList.add(tempGlyph);
-// Object[] temp = gList.toArray();
-// for (Object o : temp) {
-// System.out.println(((Glyph)o).getSong().getTitle() + " "
-// + ((Glyph)o).getSong().getHeardList().getLength());
-// }
+
             id++;
+        }
+        Object[] temp = gList.toArray();
+        for (Object o : temp) {
+// int[] arr = PersonList.getHobbyHTotal(((Glyph)o).getSong().id);
+// int[][] arr2 = ((Glyph)o).getSong().sortByHobby();
+// System.out.println(((Glyph)o).getSong().getTitle() + " "
+// + ((Glyph)o).getSong().getHeardList().getLength() + " "
+// + ((Glyph)o).getSong().getLikedList().length);
+
         }
 
         return gList;
@@ -152,7 +160,6 @@ public class FileReader extends LinkedList<Person> {
             }
             curr = curr.next;
         }
-        System.out.println(hList.length);
         return hList;
     }
 

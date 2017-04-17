@@ -52,7 +52,6 @@ public class PersonList extends LinkedList<Person> {
         hobbyTotal[1] = art;
         hobbyTotal[2] = sport;
         hobbyTotal[3] = music;
-        System.out.println(sport);
         return hobbyTotal;
     }
 

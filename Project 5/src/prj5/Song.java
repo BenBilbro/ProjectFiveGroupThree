@@ -34,6 +34,23 @@ public class Song extends LinkedList<Person> {
         date = d;
         heardList = hL;
         likedList = lL;
+//
+// Person person = null;
+// Node<Person> curr = heardList.getHead();
+// while (curr != null) {
+// if (curr.getData().getId() == 159) {
+// person = curr.getData();
+// System.out.println(title);
+// }
+// curr = curr.getNext();
+// }
+//
+// if (person != null) {
+// for (int i = 0; i < person.getResponses().length; i++) {
+// System.out.println(person.getResponses()[i]);
+// }
+// }
+
     }
 
 
