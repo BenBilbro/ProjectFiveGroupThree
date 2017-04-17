@@ -3,34 +3,57 @@
  */
 package prj5;
 
-import prj5.LinkedList.Node;
+import java.util.Iterator;
 
 /**
- * @author benzb
+ * @author Ben Bilbro (benzb), Sean Seth (ssean7), Tej Patel (tej0126)
  *
  */
-public class PersonList extends LinkedList<Person> {
+public class PersonList extends LinkedList<Person>
+{
 
     private static LinkedList<Person> pList;
 
 
-    public PersonList(LinkedList<Person> pList) {
-        this.pList = pList;
+    /**
+     * Creates a new PersonList
+     * 
+     * @param personList
+     *            A list of all of the valid people in the parsed data
+     */
+    public PersonList(LinkedList<Person> personList)
+    {
+        pList = personList;
     }
 
 
-    public static int[] getHobbyHTotal(int id) {
+    /**
+     * Calculates the number of people in each hobby that have heard a certain
+     * song
+     * 
+     * @param id
+     *            A specified song's identification number
+     * @return an array of four integers that contains the totals for the number
+     *         of people who have heard the specified song for each hobby
+     */
+    public static int[] getHobbyHTotal(int id)
+    {
         int read = 0;
         int art = 0;
         int music = 0;
         int sport = 0;
         int[] hobbyTotal = new int[4];
+        Iterator<Person> iter = pList.iterator();
 
-        Node<Person> curr = pList.getHead();
-        while (curr != null) {
-            if (!curr.getData().getHeard(id).equals(" ")) {
-                if (curr.getData().getHobby() != null) {
-                    switch (curr.getData().getHobby()) {
+        while (iter.hasNext())
+        {
+            Person temp = iter.next();
+            if (!temp.getHeard(id).equals(" "))
+            {
+                if (temp.getHobby() != null)
+                {
+                    switch (temp.getHobby())
+                    {
                         case READING:
                             read++;
                             break;
@@ -46,7 +69,6 @@ public class PersonList extends LinkedList<Person> {
                     }
                 }
             }
-            curr = curr.getNext();
         }
         hobbyTotal[0] = read;
         hobbyTotal[1] = art;
@@ -55,19 +77,34 @@ public class PersonList extends LinkedList<Person> {
         return hobbyTotal;
     }
 
-
-    public static int[] getHobbyLTotal(int id) {
+    /**
+     * Calculates the number of people in each hobby that have liked a certain
+     * song
+     * 
+     * @param id
+     *            A specified song's identification number
+     * @return an array of four integers that contains the totals for the number
+     *         of people who have liked the specified song for each hobby
+     */
+    public static int[] getHobbyLTotal(int id)
+    {
         int read = 0;
         int art = 0;
         int music = 0;
         int sport = 0;
         int[] hobbyTotal = new int[4];
 
-        Node<Person> curr = pList.getHead();
-        while (curr != null) {
-            if (!curr.getData().getLiked(id).equals(" ")) {
-                if (curr.getData().getHobby() != null) {
-                    switch (curr.getData().getHobby()) {
+        Iterator<Person> iter = pList.iterator();
+
+        while (iter.hasNext())
+        {
+            Person temp = iter.next();
+            if (!temp.getLiked(id).equals(" "))
+            {
+                if (temp.getHobby() != null)
+                {
+                    switch (temp.getHobby())
+                    {
                         case READING:
                             read++;
                             break;
@@ -83,7 +120,6 @@ public class PersonList extends LinkedList<Person> {
                     }
                 }
             }
-            curr = curr.getNext();
         }
         hobbyTotal[0] = read;
         hobbyTotal[1] = art;
@@ -93,19 +129,33 @@ public class PersonList extends LinkedList<Person> {
         return hobbyTotal;
     }
 
-
-    public static int[] getMajorHTotal(int id) {
+    /**
+     * Calculates the number of people in each major that have heard a certain
+     * song
+     * 
+     * @param id
+     *            A specified song's identification number
+     * @return an array of four integers that contains the totals for the number
+     *         of people who have heard the specified song for each major
+     */
+    public static int[] getMajorHTotal(int id)
+    {
         int math = 0;
         int compSci = 0;
         int otherEnge = 0;
         int other = 0;
         int[] majorTotal = new int[4];
+        Iterator<Person> iter = pList.iterator();
 
-        Node<Person> curr = pList.getHead();
-        while (curr != null) {
-            if (!curr.getData().getHeard(id).equals(" ")) {
-                if (curr.getData().getMajor() != null) {
-                    switch (curr.getData().getMajor()) {
+        while (iter.hasNext())
+        {
+            Person temp = iter.next();
+            if (!temp.getHeard(id).equals(" "))
+            {
+                if (temp.getMajor() != null)
+                {
+                    switch (temp.getMajor())
+                    {
                         case MATH_CMDA:
                             math++;
                             break;
@@ -121,8 +171,8 @@ public class PersonList extends LinkedList<Person> {
                     }
                 }
             }
-            curr = curr.getNext();
         }
+
         majorTotal[0] = math;
         majorTotal[1] = compSci;
         majorTotal[2] = otherEnge;
@@ -131,19 +181,34 @@ public class PersonList extends LinkedList<Person> {
         return majorTotal;
     }
 
-
-    public static int[] getMajorLTotal(int id) {
+    /**
+     * Calculates the number of people in each major that have liked a certain
+     * song
+     * 
+     * @param id
+     *            A specified song's identification number
+     * @return an array of four integers that contains the totals for the number
+     *         of people who have liked the specified song for each major
+     */
+    public static int[] getMajorLTotal(int id)
+    {
         int math = 0;
         int compSci = 0;
         int otherEnge = 0;
         int other = 0;
         int[] majorTotal = new int[4];
 
-        Node<Person> curr = pList.getHead();
-        while (curr != null) {
-            if (!curr.getData().getLiked(id).equals(" ")) {
-                if (curr.getData().getMajor() != null) {
-                    switch (curr.getData().getMajor()) {
+        Iterator<Person> iter = pList.iterator();
+
+        while (iter.hasNext())
+        {
+            Person temp = iter.next();
+            if (!temp.getLiked(id).equals(" "))
+            {
+                if (temp.getMajor() != null)
+                {
+                    switch (temp.getMajor())
+                    {
                         case MATH_CMDA:
                             math++;
                             break;
@@ -159,7 +224,6 @@ public class PersonList extends LinkedList<Person> {
                     }
                 }
             }
-            curr = curr.getNext();
         }
         majorTotal[0] = math;
         majorTotal[1] = compSci;
@@ -169,19 +233,33 @@ public class PersonList extends LinkedList<Person> {
         return majorTotal;
     }
 
-
-    public static int[] getRegionHTotal(int id) {
+    /**
+     * Calculates the number of people in each region that have heard a certain
+     * song
+     * 
+     * @param id
+     *            A specified song's identification number
+     * @return an array of four integers that contains the totals for the number
+     *         of people who have heard the specified song for each region
+     */
+    public static int[] getRegionHTotal(int id)
+    {
         int northW = 0;
         int southE = 0;
         int other = 0;
         int out = 0;
         int[] regionTotal = new int[4];
+        Iterator<Person> iter = pList.iterator();
 
-        Node<Person> curr = pList.getHead();
-        while (curr != null) {
-            if (!curr.getData().getHeard(id).equals(" ")) {
-                if (curr.getData().getRegion() != null) {
-                    switch (curr.getData().getRegion()) {
+        while (iter.hasNext())
+        {
+            Person temp = iter.next();
+            if (!temp.getHeard(id).equals(" "))
+            {
+                if (temp.getRegion() != null)
+                {
+                    switch (temp.getRegion())
+                    {
                         case NORTHEAST:
                             northW++;
                             break;
@@ -197,7 +275,6 @@ public class PersonList extends LinkedList<Person> {
                     }
                 }
             }
-            curr = curr.getNext();
         }
         regionTotal[0] = northW;
         regionTotal[1] = southE;
@@ -207,19 +284,34 @@ public class PersonList extends LinkedList<Person> {
         return regionTotal;
     }
 
-
-    public static int[] getRegionLTotal(int id) {
+    /**
+     * Calculates the number of people in each region that have liked a certain
+     * song
+     * 
+     * @param id
+     *            A specified song's identification number
+     * @return an array of four integers that contains the totals for the number
+     *         of people who have liked the specified song for each region
+     */
+    public static int[] getRegionLTotal(int id)
+    {
         int northW = 0;
         int southE = 0;
         int other = 0;
         int out = 0;
         int[] regionTotal = new int[4];
 
-        Node<Person> curr = pList.getHead();
-        while (curr != null) {
-            if (!curr.getData().getLiked(id).equals(" ")) {
-                if (curr.getData().getRegion() != null) {
-                    switch (curr.getData().getRegion()) {
+        Iterator<Person> iter = pList.iterator();
+
+        while (iter.hasNext())
+        {
+            Person temp = iter.next();
+            if (!temp.getLiked(id).equals(" "))
+            {
+                if (temp.getRegion() != null)
+                {
+                    switch (temp.getRegion())
+                    {
                         case NORTHEAST:
                             northW++;
                             break;
@@ -235,7 +327,6 @@ public class PersonList extends LinkedList<Person> {
                     }
                 }
             }
-            curr = curr.getNext();
         }
         regionTotal[0] = northW;
         regionTotal[1] = southE;

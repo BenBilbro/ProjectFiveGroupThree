@@ -3,11 +3,14 @@
  */
 package prj5;
 
+import java.util.Iterator;
+
 /**
- * @author Ben Bilbro
+ * @author Ben Bilbro (benzb), Sean Seth (ssean7), Tej Patel (tej0126)
  *
  */
-public class Song extends LinkedList<Person> {
+public class Song
+{
 
     public int id;
     private String artist;
@@ -18,6 +21,24 @@ public class Song extends LinkedList<Person> {
     private LinkedList<Person> likedList;
 
 
+    /**
+     * Creates a new Song object
+     * 
+     * @param id
+     *            The identification number for a song
+     * @param a
+     *            The artist of the song
+     * @param g
+     *            The genre of the song
+     * @param t
+     *            The title of the song
+     * @param d
+     *            The date that the song was released
+     * @param hL
+     *            The list of people who have heard the song
+     * @param lL
+     *            The list of people who have liked the song
+     */
     public Song(
         int id,
         String a,
@@ -25,7 +46,8 @@ public class Song extends LinkedList<Person> {
         String t,
         String d,
         LinkedList<Person> hL,
-        LinkedList<Person> lL) {
+        LinkedList<Person> lL)
+    {
 
         this.id = id;
         artist = a;
@@ -34,77 +56,80 @@ public class Song extends LinkedList<Person> {
         date = d;
         heardList = hL;
         likedList = lL;
-//
-// Person person = null;
-// Node<Person> curr = heardList.getHead();
-// while (curr != null) {
-// if (curr.getData().getId() == 159) {
-// person = curr.getData();
-// System.out.println(title);
-// }
-// curr = curr.getNext();
-// }
-//
-// if (person != null) {
-// for (int i = 0; i < person.getResponses().length; i++) {
-// System.out.println(person.getResponses()[i]);
-// }
-// }
 
     }
 
 
-    public int[][] getResults(Class<?> enumClass) {
-        if (enumClass.equals(Hobby.class)) {
+    /**
+     * 
+     * @param enumClass
+     * @return
+     */
+    public int[][] getResults(Class<?> enumClass)
+    {
+        if (enumClass.equals(HobbyEnum.class))
+        {
             return sortByHobby();
         }
-        else if (enumClass.equals(Region.class)) {
+        else if (enumClass.equals(RegionEnum.class))
+        {
             return sortByRegion();
         }
-        else if (enumClass.equals(Major.class)) {
+        else if (enumClass.equals(MajorEnum.class))
+        {
             return sortByMajor();
         }
-
-        return null;
+        else
+        {
+            return null;
+        }
     }
 
 
-    public String getArtist() {
+    public String getArtist()
+    {
         return artist;
     }
 
 
-    public String getTitle() {
+    public String getTitle()
+    {
         return title;
     }
 
 
-    public String getGenre() {
+    public String getGenre()
+    {
         return genre;
     }
 
 
-    public String getDate() {
+    public String getDate()
+    {
         return date;
     }
 
 
-    public LinkedList<Person> getHeardList() {
+    public LinkedList<Person> getHeardList()
+    {
         return heardList;
     }
 
 
-    public LinkedList<Person> getLikedList() {
+    public LinkedList<Person> getLikedList()
+    {
         return likedList;
     }
 
 
-    public String toString() {
+    public String toString()
+    {
         return title + " by " + artist + ", " + genre + "; " + date;
     }
 
 
-    public int[][] sortByHobby() {
+    public int[][] sortByHobby()
+    {
         double readH = 0;
         double artH = 0;
         double musicH = 0;
@@ -114,11 +139,15 @@ public class Song extends LinkedList<Person> {
         double musicL = 0;
         double sportL = 0;
         int[][] hobbyArr = new int[2][4];
+        Iterator<Person> iter = heardList.iterator();
 
-        Node<Person> curr = heardList.getHead();
-        while (curr != null) {
-            if (curr.getData().getHobby() != null) {
-                switch (curr.getData().getHobby()) {
+        while (iter.hasNext())
+        {
+            Person temp = iter.next();
+            if (temp.getHobby() != null)
+            {
+                switch (temp.getHobby())
+                {
                     case READING:
                         readH++;
                         break;
@@ -133,12 +162,17 @@ public class Song extends LinkedList<Person> {
                         break;
                 }
             }
-            curr = curr.getNext();
         }
-        curr = likedList.getHead();
-        while (curr != null) {
-            if (curr.getData().getHobby() != null) {
-                switch (curr.getData().getHobby()) {
+
+        iter = likedList.iterator();
+
+        while (iter.hasNext())
+        {
+            Person temp = iter.next();
+            if (temp.getHobby() != null)
+            {
+                switch (temp.getHobby())
+                {
                     case READING:
                         readL++;
                         break;
@@ -152,8 +186,8 @@ public class Song extends LinkedList<Person> {
                         sportL++;
                         break;
                 }
+
             }
-            curr = curr.getNext();
         }
         int[] hHTotal = PersonList.getHobbyHTotal(id);
         int[] hLTotal = PersonList.getHobbyLTotal(id);
@@ -171,7 +205,8 @@ public class Song extends LinkedList<Person> {
     }
 
 
-    public int[][] sortByRegion() {
+    public int[][] sortByRegion()
+    {
         double northEH = 0;
         double southEH = 0;
         double otherH = 0;
@@ -181,11 +216,15 @@ public class Song extends LinkedList<Person> {
         double otherL = 0;
         double outL = 0;
         int[][] regionArr = new int[2][4];
+        Iterator<Person> iter = heardList.iterator();
 
-        Node<Person> curr = heardList.getHead();
-        while (curr != null) {
-            if (curr.getData().getRegion() != null) {
-                switch (curr.getData().getRegion()) {
+        while (iter.hasNext())
+        {
+            Person temp = iter.next();
+            if (temp.getRegion() != null)
+            {
+                switch (temp.getRegion())
+                {
                     case NORTHEAST:
                         northEH++;
                         break;
@@ -199,13 +238,19 @@ public class Song extends LinkedList<Person> {
                         outH++;
                         break;
                 }
+
             }
-            curr = curr.getNext();
         }
-        curr = likedList.getHead();
-        while (curr != null) {
-            if (curr.getData().getRegion() != null) {
-                switch (curr.getData().getRegion()) {
+
+        iter = likedList.iterator();
+
+        while (iter.hasNext())
+        {
+            Person temp = iter.next();
+            if (temp.getRegion() != null)
+            {
+                switch (temp.getRegion())
+                {
                     case NORTHEAST:
                         northEL++;
                         break;
@@ -219,9 +264,10 @@ public class Song extends LinkedList<Person> {
                         outL++;
                         break;
                 }
+
             }
-            curr = curr.getNext();
         }
+
         int[] rHTotal = PersonList.getRegionHTotal(id);
         int[] rLTotal = PersonList.getRegionLTotal(id);
 
@@ -239,7 +285,8 @@ public class Song extends LinkedList<Person> {
     }
 
 
-    public int[][] sortByMajor() {
+    public int[][] sortByMajor()
+    {
         double mathH = 0;
         double compSciH = 0;
         double otherEngeH = 0;
@@ -250,10 +297,15 @@ public class Song extends LinkedList<Person> {
         double otherL = 0;
         int[][] majorArr = new int[2][4];
 
-        Node<Person> curr = heardList.getHead();
-        while (curr != null) {
-            if (curr.getData().getMajor() != null) {
-                switch (curr.getData().getMajor()) {
+        Iterator<Person> iter = heardList.iterator();
+
+        while (iter.hasNext())
+        {
+            Person temp = iter.next();
+            if (temp.getMajor() != null)
+            {
+                switch (temp.getMajor())
+                {
                     case MATH_CMDA:
                         mathH++;
                         break;
@@ -267,13 +319,19 @@ public class Song extends LinkedList<Person> {
                         otherH++;
                         break;
                 }
+
             }
-            curr = curr.getNext();
         }
-        curr = likedList.getHead();
-        while (curr != null) {
-            if (curr.getData().getMajor() != null) {
-                switch (curr.getData().getMajor()) {
+
+        iter = likedList.iterator();
+
+        while (iter.hasNext())
+        {
+            Person temp = iter.next();
+            if (temp.getMajor() != null)
+            {
+                switch (temp.getMajor())
+                {
                     case MATH_CMDA:
                         mathL++;
                         break;
@@ -287,9 +345,10 @@ public class Song extends LinkedList<Person> {
                         otherL++;
                         break;
                 }
+
             }
-            curr = curr.getNext();
         }
+
         int[] mHTotal = PersonList.getMajorHTotal(id);
         int[] mLTotal = PersonList.getMajorLTotal(id);
 

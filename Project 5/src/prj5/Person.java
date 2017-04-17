@@ -15,9 +15,9 @@ public class Person {
 
     private int id;
     private String[] responses;
-    private Major major;
-    private Hobby hobby;
-    private Region region;
+    private MajorEnum major;
+    private HobbyEnum hobby;
+    private RegionEnum region;
 
 
     /**
@@ -34,9 +34,9 @@ public class Person {
      */
     public Person(
         int id,
-        Major major,
-        Region region,
-        Hobby hobby,
+        MajorEnum major,
+        RegionEnum region,
+        HobbyEnum hobby,
         String[] responses) {
 
         this.id = id;
@@ -52,7 +52,7 @@ public class Person {
      * 
      * @return Major enum of the persons major
      */
-    public Major getMajor() {
+    public MajorEnum getMajor() {
         return this.major;
     }
 
@@ -62,7 +62,7 @@ public class Person {
      * 
      * @return Hobby enum of the persons hobby
      */
-    public Hobby getHobby() {
+    public HobbyEnum getHobby() {
         return this.hobby;
     }
 
@@ -72,7 +72,7 @@ public class Person {
      * 
      * @return Region enum of the persons region
      */
-    public Region getRegion() {
+    public RegionEnum getRegion() {
         return this.region;
     }
 
