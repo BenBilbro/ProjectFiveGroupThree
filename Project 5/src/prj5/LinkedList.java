@@ -48,6 +48,33 @@ public class LinkedList<T> {
     }
 
 
+    public void clear() {
+        length = 0;
+        head = null;
+        tail = null;
+    }
+
+
+    public Node<T> getHead() {
+        return head;
+    }
+
+
+    public Object[] toArray() {
+        @SuppressWarnings("unchecked")
+        Object[] toArr = (T[])new Object[getLength()];
+        int i = 0;
+        Node<T> curr = head;
+        while (curr != null && i < getLength()) {
+            toArr[i] = curr.getData();
+            curr = curr.getNext();
+            i++;
+        }
+        return toArr;
+
+    }
+
+
     @SuppressWarnings("hiding")
     protected class Node<T> {
         protected T data;

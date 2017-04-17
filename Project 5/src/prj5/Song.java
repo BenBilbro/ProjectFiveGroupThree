@@ -14,8 +14,8 @@ public class Song extends LinkedList<Person> {
     private String genre;
     private String title;
     private String date;
-    public static LinkedList<Person> heardList;
-    public static LinkedList<Person> likedList;
+    private LinkedList<Person> heardList;
+    private LinkedList<Person> likedList;
 
 
     public Song(
@@ -37,7 +37,7 @@ public class Song extends LinkedList<Person> {
     }
 
 
-    public static int[][] getResults(Class<?> enumClass) {
+    public int[][] getResults(Class<?> enumClass) {
         if (enumClass.equals(Hobby.class)) {
             return sortByHobby();
         }
@@ -72,185 +72,218 @@ public class Song extends LinkedList<Person> {
     }
 
 
-    public static int[][] sortByHobby() {
-        int readH = 0;
-        int artH = 0;
-        int musicH = 0;
-        int sportH = 0;
-        int readL = 0;
-        int artL = 0;
-        int musicL = 0;
-        int sportL = 0;
+    public LinkedList<Person> getHeardList() {
+        return heardList;
+    }
+
+
+    public LinkedList<Person> getLikedList() {
+        return likedList;
+    }
+
+
+    public String toString() {
+        return title + " by " + artist + ", " + genre + "; " + date;
+    }
+
+
+    public int[][] sortByHobby() {
+        double readH = 0;
+        double artH = 0;
+        double musicH = 0;
+        double sportH = 0;
+        double readL = 0;
+        double artL = 0;
+        double musicL = 0;
+        double sportL = 0;
         int[][] hobbyArr = new int[2][4];
 
-        Node<Person> curr = heardList.head;
+        Node<Person> curr = heardList.getHead();
         while (curr != null) {
-            switch (curr.getData().getHobby()) {
-                case READING:
-                    readH++;
-                    break;
-                case ART:
-                    artH++;
-                    break;
-                case MUSIC:
-                    musicH++;
-                    break;
-                case SPORTS:
-                    sportH++;
-                    break;
+            if (curr.getData().getHobby() != null) {
+                switch (curr.getData().getHobby()) {
+                    case READING:
+                        readH++;
+                        break;
+                    case ART:
+                        artH++;
+                        break;
+                    case MUSIC:
+                        musicH++;
+                        break;
+                    case SPORTS:
+                        sportH++;
+                        break;
+                }
             }
-            curr = curr.next;
+            curr = curr.getNext();
         }
-        curr = likedList.head;
+        curr = likedList.getHead();
         while (curr != null) {
-            switch (curr.getData().getHobby()) {
-                case READING:
-                    readL++;
-                    break;
-                case ART:
-                    artL++;
-                    break;
-                case MUSIC:
-                    musicL++;
-                    break;
-                case SPORTS:
-                    sportL++;
-                    break;
+            if (curr.getData().getHobby() != null) {
+                switch (curr.getData().getHobby()) {
+                    case READING:
+                        readL++;
+                        break;
+                    case ART:
+                        artL++;
+                        break;
+                    case MUSIC:
+                        musicL++;
+                        break;
+                    case SPORTS:
+                        sportL++;
+                        break;
+                }
             }
-            curr = curr.next;
+            curr = curr.getNext();
         }
+        int[] hHTotal = PersonList.getHobbyHTotal(id);
+        int[] hLTotal = PersonList.getHobbyLTotal(id);
 
-        hobbyArr[0][0] = readH;
-        hobbyArr[0][1] = artH;
-        hobbyArr[0][2] = musicH;
-        hobbyArr[0][3] = sportH;
-        hobbyArr[1][0] = readL;
-        hobbyArr[1][1] = artL;
-        hobbyArr[1][2] = musicL;
-        hobbyArr[1][3] = sportL;
+        hobbyArr[0][0] = (int)((readH / hHTotal[0]) * 100);
+        hobbyArr[0][1] = (int)((artH / hHTotal[1]) * 100);
+        hobbyArr[0][2] = (int)((sportH / hHTotal[2]) * 100);
+        hobbyArr[0][3] = (int)((musicH / hHTotal[3]) * 100);
+        hobbyArr[1][0] = (int)((readL / hLTotal[0]) * 100);
+        hobbyArr[1][1] = (int)((artL / hLTotal[1]) * 100);
+        hobbyArr[1][2] = (int)((sportL / hLTotal[2]) * 100);
+        hobbyArr[1][3] = (int)((musicL / hLTotal[3]) * 100);
 
         return hobbyArr;
     }
 
 
-    public static int[][] sortByRegion() {
-        int northWH = 0;
-        int southEH = 0;
-        int otherH = 0;
-        int outH = 0;
-        int northWL = 0;
-        int southEL = 0;
-        int otherL = 0;
-        int outL = 0;
+    public int[][] sortByRegion() {
+        double northEH = 0;
+        double southEH = 0;
+        double otherH = 0;
+        double outH = 0;
+        double northEL = 0;
+        double southEL = 0;
+        double otherL = 0;
+        double outL = 0;
         int[][] regionArr = new int[2][4];
 
-        Node<Person> curr = heardList.head;
+        Node<Person> curr = heardList.getHead();
         while (curr != null) {
-            switch (curr.getData().getRegion()) {
-                case NORTHEAST:
-                    northWH++;
-                    break;
-                case SOUTHEAST:
-                    southEH++;
-                    break;
-                case OTHER_US:
-                    otherH++;
-                    break;
-                case OUTSIDE_US:
-                    outH++;
-                    break;
+            if (curr.getData().getRegion() != null) {
+                switch (curr.getData().getRegion()) {
+                    case NORTHEAST:
+                        northEH++;
+                        break;
+                    case SOUTHEAST:
+                        southEH++;
+                        break;
+                    case OTHER_US:
+                        otherH++;
+                        break;
+                    case OUTSIDE_US:
+                        outH++;
+                        break;
+                }
             }
-            curr = curr.next;
+            curr = curr.getNext();
         }
-        curr = likedList.head;
+        curr = likedList.getHead();
         while (curr != null) {
-            switch (curr.getData().getRegion()) {
-                case NORTHEAST:
-                    northWL++;
-                    break;
-                case SOUTHEAST:
-                    southEL++;
-                    break;
-                case OTHER_US:
-                    otherL++;
-                    break;
-                case OUTSIDE_US:
-                    outL++;
-                    break;
+            if (curr.getData().getRegion() != null) {
+                switch (curr.getData().getRegion()) {
+                    case NORTHEAST:
+                        northEL++;
+                        break;
+                    case SOUTHEAST:
+                        southEL++;
+                        break;
+                    case OTHER_US:
+                        otherL++;
+                        break;
+                    case OUTSIDE_US:
+                        outL++;
+                        break;
+                }
             }
-            curr = curr.next;
+            curr = curr.getNext();
         }
+        int[] rHTotal = PersonList.getRegionHTotal(id);
+        int[] rLTotal = PersonList.getRegionLTotal(id);
 
-        regionArr[0][0] = northWH;
-        regionArr[0][1] = southEH;
-        regionArr[0][2] = otherH;
-        regionArr[0][3] = outH;
-        regionArr[1][0] = northWL;
-        regionArr[1][1] = southEL;
-        regionArr[1][2] = otherL;
-        regionArr[1][3] = outL;
+        regionArr[0][0] = (int)((northEH / rHTotal[0]) * 100);
+        regionArr[0][1] = (int)((southEH / rHTotal[1]) * 100);
+        regionArr[0][2] = (int)((otherH / rHTotal[2]) * 100);
+        regionArr[0][3] = (int)((outH / rHTotal[3]) * 100);
+        regionArr[1][0] = (int)((northEL / rLTotal[0]) * 100);
+        regionArr[1][1] = (int)((southEL / rLTotal[1]) * 100);
+        regionArr[1][2] = (int)((otherL / rLTotal[2]) * 100);
+        regionArr[1][3] = (int)((outL / rLTotal[3]) * 100);
 
         return regionArr;
 
     }
 
 
-    public static int[][] sortByMajor() {
-        int mathH = 0;
-        int compSciH = 0;
-        int otherEngeH = 0;
-        int otherH = 0;
-        int mathL = 0;
-        int compSciL = 0;
-        int otherEngeL = 0;
-        int otherL = 0;
+    public int[][] sortByMajor() {
+        double mathH = 0;
+        double compSciH = 0;
+        double otherEngeH = 0;
+        double otherH = 0;
+        double mathL = 0;
+        double compSciL = 0;
+        double otherEngeL = 0;
+        double otherL = 0;
         int[][] majorArr = new int[2][4];
 
-        Node<Person> curr = heardList.head;
+        Node<Person> curr = heardList.getHead();
         while (curr != null) {
-            switch (curr.getData().getMajor()) {
-                case MATH_CMDA:
-                    mathH++;
-                    break;
-                case COMP_SCI:
-                    compSciH++;
-                    break;
-                case OTHER_ENGE:
-                    otherEngeH++;
-                    break;
-                case OTHER:
-                    otherH++;
-                    break;
+            if (curr.getData().getMajor() != null) {
+                switch (curr.getData().getMajor()) {
+                    case MATH_CMDA:
+                        mathH++;
+                        break;
+                    case COMP_SCI:
+                        compSciH++;
+                        break;
+                    case OTHER_ENGE:
+                        otherEngeH++;
+                        break;
+                    case OTHER:
+                        otherH++;
+                        break;
+                }
             }
-            curr = curr.next;
+            curr = curr.getNext();
         }
-        curr = likedList.head;
+        curr = likedList.getHead();
         while (curr != null) {
-            switch (curr.getData().getMajor()) {
-                case MATH_CMDA:
-                    mathL++;
-                    break;
-                case COMP_SCI:
-                    compSciL++;
-                    break;
-                case OTHER_ENGE:
-                    otherEngeL++;
-                    break;
-                case OTHER:
-                    otherL++;
-                    break;
+            if (curr.getData().getMajor() != null) {
+                switch (curr.getData().getMajor()) {
+                    case MATH_CMDA:
+                        mathL++;
+                        break;
+                    case COMP_SCI:
+                        compSciL++;
+                        break;
+                    case OTHER_ENGE:
+                        otherEngeL++;
+                        break;
+                    case OTHER:
+                        otherL++;
+                        break;
+                }
             }
-            curr = curr.next;
+            curr = curr.getNext();
         }
+        int[] mHTotal = PersonList.getMajorHTotal(id);
+        int[] mLTotal = PersonList.getMajorLTotal(id);
 
-        majorArr[0][0] = mathH;
-        majorArr[0][1] = compSciH;
-        majorArr[0][2] = otherEngeH;
-        majorArr[0][3] = otherH;
-        majorArr[1][0] = mathL;
-        majorArr[1][1] = compSciL;
-        majorArr[1][2] = otherEngeL;
-        majorArr[1][3] = otherL;
+        majorArr[0][0] = (int)((mathH / mHTotal[0]) * 100);
+        majorArr[0][1] = (int)((compSciH / mHTotal[1]) * 100);
+        majorArr[0][2] = (int)((otherEngeH / mHTotal[2]) * 100);
+        majorArr[0][3] = (int)((otherH / mHTotal[3]) * 100);
+        majorArr[1][0] = (int)((mathL / mLTotal[0]) * 100);
+        majorArr[1][1] = (int)((compSciL / mLTotal[1]) * 100);
+        majorArr[1][2] = (int)((otherEngeL / mLTotal[2]) * 100);
+        majorArr[1][3] = (int)((otherL / mLTotal[3]) * 100);
 
         return majorArr;
     }

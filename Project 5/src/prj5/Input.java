@@ -12,6 +12,12 @@ package prj5;
 public class Input {
 
     public static void main(String[] args) {
-        FileReader fr = new FileReader("MusicSurveyData.csv", "SongList.csv");
+        if (args.length == 2) {
+            FileReader fr = new FileReader(args[0], args[1]);
+        }
+        else {
+            FileReader fr = new FileReader("MusicSurveyDataNoGenreRepeats.csv",
+                "SongListNoGenreRepeats.csv");
+        }
     }
 }
