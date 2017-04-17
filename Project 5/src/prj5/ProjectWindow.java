@@ -129,11 +129,11 @@ public class ProjectWindow {
                         System.out.println("Likes");
                     }
                     System.out.print("Math or CMDA:" + responses[x][y] + " ");
-                    System.out.print("Computer Science" + responses[x][y + 1]
+                    System.out.print("Computer Science:" + responses[x][y + 1]
                         + " ");
-                    System.out.print("Other Engineering" + responses[x][y + 2]
+                    System.out.print("Other Engineering:" + responses[x][y + 2]
                         + " ");
-                    System.out.print("Other" + responses[x][y + 3]);
+                    System.out.print("Other:" + responses[x][y + 3]);
                     System.out.println();
                 }
             }
@@ -162,10 +162,11 @@ public class ProjectWindow {
                     else {
                         System.out.println("Likes");
                     }
-                    System.out.print("Northeast" + responses[x][y] + " ");
-                    System.out.print("Southeast" + responses[x][y + 1] + " ");
-                    System.out.print("sports:" + responses[x][y + 2] + " ");
-                    System.out.print("music:" + responses[x][y + 3]);
+                    System.out.print("Northeast:" + responses[x][y] + " ");
+                    System.out.print("Southeast:" + responses[x][y + 1] + " ");
+                    System.out.print("United States:" + responses[x][y + 2]
+                        + " ");
+                    System.out.print("Other:" + responses[x][y + 3]);
                     System.out.println();
                     System.out.println();
                 }
