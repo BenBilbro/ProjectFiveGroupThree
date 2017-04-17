@@ -8,10 +8,10 @@ import CS2114.Shape;
 import CS2114.TextShape;
 
 /**
- * @author benzb
+ * @author Ben Bilbro (benzb), Sean Seth (ssean7), Tej Patel (tej0126)
  *
  */
-public class Glyph extends Shape {
+public class Glyph {
 
     private static final int BAR_WIDTH = 100;
 
@@ -39,17 +39,17 @@ public class Glyph extends Shape {
 
 
     public int[][] sortByHobby() {
-        return song.getResults(Hobby.class);
+        return song.getResults(HobbyEnum.class);
     }
 
 
     public int[][] sortByRegion() {
-        return song.getResults(Region.class);
+        return song.getResults(RegionEnum.class);
     }
 
 
     public int[][] sortByMajor() {
-        return song.getResults(Major.class);
+        return song.getResults(MajorEnum.class);
     }
 
 
@@ -98,7 +98,42 @@ public class Glyph extends Shape {
 
 
     public Shape[] getRegionShapes() {
-        return new Shape[1];
+        
+        int[][] regionArr = sortByRegion();
+        int northH = regionArr[0][0];
+        int southH = regionArr[0][1];
+        int otherH = regionArr[0][2];
+        int outH = regionArr[0][3];
+        int northL = regionArr[1][0];
+        int southL = regionArr[1][1];
+        int otherL = regionArr[1][2];
+        int outL = regionArr[1][3];
+        purpleLBar = new Shape(0, 0, northH * BAR_WIDTH, 10, Color.MAGENTA);
+        blueLBar = new Shape(0, 0, southH * BAR_WIDTH, 10, Color.BLUE);
+        yellowLBar = new Shape(0, 0, otherH * BAR_WIDTH, 10, Color.YELLOW);
+        greenLBar = new Shape(0, 0, outH * BAR_WIDTH, 10, Color.GREEN);
+        purpleRBar = new Shape(0, 0, northL * BAR_WIDTH, 10, Color.MAGENTA);
+        blueRBar = new Shape(0, 0, southL * BAR_WIDTH, 10, Color.BLUE);
+        yellowRBar = new Shape(0, 0, otherL * BAR_WIDTH, 10, Color.YELLOW);
+        greenRBar = new Shape(0, 0, outL * BAR_WIDTH, 10, Color.GREEN);
+        blackBar = new Shape(0, 0, 10, 50);
+        title = new TextShape(0, 0, song.getTitle());
+        variantText = new TextShape(0, 0, song.getGenre());
+
+        Shape[] regionShapes = new Shape[11];
+        regionShapes[0] = purpleLBar;
+        regionShapes[1] = blueLBar;
+        regionShapes[2] = yellowLBar;
+        regionShapes[3] = greenLBar;
+        regionShapes[4] = purpleRBar;
+        regionShapes[5] = blueRBar;
+        regionShapes[6] = yellowRBar;
+        regionShapes[7] = greenRBar;
+        regionShapes[8] = blackBar;
+        regionShapes[9] = title;
+        regionShapes[10] = variantText;
+
+        return regionShapes;
     }
 
 

@@ -10,7 +10,7 @@ import CS2114.Window;
 import CS2114.WindowSide;
 
 /**
- * @author benzb
+ * @author Ben Bilbro (benzb), Sean Seth (ssean7), Tej Patel (tej0126)
  *
  */
 public class ProjectWindow {
@@ -47,7 +47,7 @@ public class ProjectWindow {
 
 
     private void initializeGlyphs() {
-
+        
     }
 
 
@@ -61,7 +61,7 @@ public class ProjectWindow {
         repHobby = new Button("Represent Hobby");
         repMajor = new Button("Represent Major");
         repRegion = new Button("Represent Region");
-        quit = new Button("quit");
+        quit = new Button("Quit");
 
         window.addButton(prev, WindowSide.NORTH);
         window.addButton(sortArtist, WindowSide.NORTH);
