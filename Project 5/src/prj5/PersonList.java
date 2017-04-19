@@ -6,10 +6,14 @@ package prj5;
 import java.util.Iterator;
 
 /**
+ * This class contains the implementation using a list of people to calculate
+ * the number of people who have heard and liked a song for each attribute
+ * 
  * @author Ben Bilbro (benzb), Sean Seth (ssean7), Tej Patel (tej0126)
+ * @version 04.19.17
  *
  */
-public class PersonList extends LinkedList<Person>
+public class PersonList
 {
 
     private static LinkedList<Person> pList;
@@ -77,6 +81,7 @@ public class PersonList extends LinkedList<Person>
         return hobbyTotal;
     }
 
+
     /**
      * Calculates the number of people in each hobby that have liked a certain
      * song
@@ -128,6 +133,7 @@ public class PersonList extends LinkedList<Person>
 
         return hobbyTotal;
     }
+
 
     /**
      * Calculates the number of people in each major that have heard a certain
@@ -181,6 +187,7 @@ public class PersonList extends LinkedList<Person>
         return majorTotal;
     }
 
+
     /**
      * Calculates the number of people in each major that have liked a certain
      * song
@@ -233,6 +240,7 @@ public class PersonList extends LinkedList<Person>
         return majorTotal;
     }
 
+
     /**
      * Calculates the number of people in each region that have heard a certain
      * song
@@ -283,6 +291,7 @@ public class PersonList extends LinkedList<Person>
 
         return regionTotal;
     }
+
 
     /**
      * Calculates the number of people in each region that have liked a certain

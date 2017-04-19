@@ -9,9 +9,10 @@ package prj5;
  * 
  * @author Ben Bilbro
  *
- * @version 4.11.17
+ * @version 04.19.17
  */
-public class Person {
+public class Person
+{
 
     private int id;
     private String[] responses;
@@ -37,8 +38,8 @@ public class Person {
         MajorEnum major,
         RegionEnum region,
         HobbyEnum hobby,
-        String[] responses) {
-
+        String[] responses)
+    {
         this.id = id;
         this.major = major;
         this.hobby = hobby;
@@ -52,7 +53,8 @@ public class Person {
      * 
      * @return Major enum of the persons major
      */
-    public MajorEnum getMajor() {
+    public MajorEnum getMajor()
+    {
         return this.major;
     }
 
@@ -62,7 +64,8 @@ public class Person {
      * 
      * @return Hobby enum of the persons hobby
      */
-    public HobbyEnum getHobby() {
+    public HobbyEnum getHobby()
+    {
         return this.hobby;
     }
 
@@ -72,7 +75,8 @@ public class Person {
      * 
      * @return Region enum of the persons region
      */
-    public RegionEnum getRegion() {
+    public RegionEnum getRegion()
+    {
         return this.region;
     }
 
@@ -82,7 +86,8 @@ public class Person {
      * 
      * @return String[] array of responses to songs
      */
-    public String[] getResponses() {
+    public String[] getResponses()
+    {
         return this.responses;
     }
 
@@ -94,8 +99,10 @@ public class Person {
      *            song Id to check for heard
      * @return boolean true or false
      */
-    public String getHeard(int id) {
-        if (responses.length > id) {
+    public String getHeard(int id)
+    {
+        if (responses.length > id)
+        {
             String[] strArr = responses[id].split(",");
             return strArr[0];
         }
@@ -110,8 +117,10 @@ public class Person {
      *            song ID to check for liked
      * @return boolean true or false
      */
-    public String getLiked(int id) {
-        if (responses.length > id) {
+    public String getLiked(int id)
+    {
+        if (responses.length > id)
+        {
             String[] strArr = responses[id].split(",");
             return strArr[1];
         }
@@ -119,13 +128,15 @@ public class Person {
     }
 
 
-    public int getId() {
+    /**
+     * Returns the identification number for the person in order to keep track
+     * of people
+     * 
+     * @return the identification number
+     */
+    public int getId()
+    {
         return id;
-    }
-
-
-    public String toString() {
-        return "";
     }
 
 }
