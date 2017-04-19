@@ -9,11 +9,17 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 /**
+ * The purpose of this class is to parse the given survey data, going through
+ * people's responses and the different songs. From that data, a list of valid
+ * people and glyphs is created
+ * of
+ * 
  * @author Ben Bilbro (benzb), Sean Seth (ssean7), Tej Patel (tej0126)
+ * @version 04.19.17
  *
  */
-public class FileReader extends LinkedList<Person> {
-
+public class FileReader extends LinkedList<Person>
+{
     private LinkedList<Glyph> gList;
     private LinkedList<Person> pList;
     private Scanner pReader;
@@ -21,21 +27,41 @@ public class FileReader extends LinkedList<Person> {
     private int rLength;
 
 
-    public FileReader(String filePeople, String fileSongs) {
-
+    /**
+     * Creates a new FileReader object
+     * 
+     * @param filePeople
+     *            the information about the people and their responses
+     * @param fileSongs
+     *            the information about the songs
+     */
+    public FileReader(String filePeople, String fileSongs)
+    {
         rLength = getRLength(fileSongs);
-        new ProjectWindow(parseSongs(fileSongs, parsePeople(filePeople)));
+        parsePeople(filePeople);
+        new ProjectWindow(parseSongs(fileSongs));
 
     }
 
 
-    public LinkedList<Person> parsePeople(String file) {
+    /**
+     * Allocates all of the information given from each person's response in the
+     * data for each song
+     * 
+     * @param file
+     *            the information about the people and their responses for each
+     *            song
+     */
+    public void parsePeople(String file)
+    {
         pList = new LinkedList<Person>();
         // MAJOR, REGION, HOBBY, RESPONSES
-        try {
+        try
+        {
             pReader = new Scanner(new File(file));
         }
-        catch (FileNotFoundException e) {
+        catch (FileNotFoundException e)
+        {
             e.printStackTrace();
         }
         String[] strArr;
@@ -48,41 +74,52 @@ public class FileReader extends LinkedList<Person> {
         String liked;
         pReader.nextLine();
         int id = 1;
-        while (pReader.hasNextLine()) {
+        while (pReader.hasNextLine())
+        {
             strArr = pReader.nextLine().split(",");
-            if (strArr.length % 2 == 0) {
+            if (strArr.length % 2 == 0)
+            {
                 String[] temp = new String[strArr.length + 1];
-                for (int y = 0; y < strArr.length; y++) {
+                for (int y = 0; y < strArr.length; y++)
+                {
                     temp[y] = strArr[y];
                 }
                 temp[strArr.length] = "";
                 strArr = temp;
             }
 
-            if (strArr.length > 5) {
+            if (strArr.length > 5)
+            {
                 major = MajorEnum.getMajor(strArr[2]);
                 region = RegionEnum.getRegion(strArr[3]);
                 hobby = HobbyEnum.getHobby(strArr[4]);
-                if (hobby == null || major == null || region == null) {
+                if (hobby == null || major == null || region == null)
+                {
                     continue;
                 }
                 responses = new String[rLength];
-                for (int x = 0; x < rLength; x++) {
+                for (int x = 0; x < rLength; x++)
+                {
                     responses[x] = " , ";
                 }
 
-                for (int i = 5; i < strArr.length - 1; i += 2) {
+                for (int i = 5; i < strArr.length - 1; i += 2)
+                {
 
-                    if (strArr[i].equals("")) {
+                    if (strArr[i].equals(""))
+                    {
                         heard = " ";
                     }
-                    else {
+                    else
+                    {
                         heard = strArr[i];
                     }
-                    if (strArr[i + 1].equals("")) {
+                    if (strArr[i + 1].equals(""))
+                    {
                         liked = " ";
                     }
-                    else {
+                    else
+                    {
                         liked = strArr[i + 1];
                     }
                     responses[(i - 5) / 2] = heard + "," + liked;
@@ -94,18 +131,27 @@ public class FileReader extends LinkedList<Person> {
 
         }
         new PersonList(pList);
-        
-        return pList;
     }
 
 
-    public LinkedList<Glyph> parseSongs(String file, LinkedList<Person> pList) {
+    /**
+     * Gets all of the information about the songs, makes a heard and liked list
+     * for each song, and associates a glyph to it
+     * 
+     * @param file
+     *            the information about each song
+     * @return a list of glyphs that will be used for visual implementation
+     */
+    public LinkedList<Glyph> parseSongs(String file)
+    {
         gList = new LinkedList<Glyph>();
 
-        try {
+        try
+        {
             mReader = new Scanner(new File(file));
         }
-        catch (FileNotFoundException e) {
+        catch (FileNotFoundException e)
+        {
             e.printStackTrace();
         }
 
@@ -118,15 +164,17 @@ public class FileReader extends LinkedList<Person> {
         LinkedList<Person> heardList = null;
         LinkedList<Person> likedList = null;
         mReader.nextLine();
-        while (mReader.hasNextLine()) {
+        while (mReader.hasNextLine())
+        {
             strArr = mReader.nextLine().split(",");
-            for (int i = 0; i < strArr.length; i += 5) {
+            for (int i = 0; i < strArr.length; i += 5)
+            {
                 title = strArr[i];
                 artist = strArr[i + 1];
                 date = strArr[i + 2];
                 genre = strArr[i + 3];
-                heardList = makeHeardList(id, pList);
-                likedList = makeLikedList(id, pList);
+                heardList = makeHeardList(id);
+                likedList = makeLikedList(id);
             }
             Song tempSong = new Song(id, artist, genre, title, date, heardList,
                 likedList);
@@ -135,27 +183,28 @@ public class FileReader extends LinkedList<Person> {
 
             id++;
         }
-//        Object[] temp = gList.toArray();
-//        for (Object o : temp) {
-// int[] arr = PersonList.getHobbyHTotal(((Glyph)o).getSong().id);
-// int[][] arr2 = ((Glyph)o).getSong().sortByHobby();
-// System.out.println(((Glyph)o).getSong().getTitle() + " "
-// + ((Glyph)o).getSong().getHeardList().getLength() + " "
-// + ((Glyph)o).getSong().getLikedList().length);
-//
-//        }
 
         return gList;
     }
 
 
-    public LinkedList<Person> makeHeardList(int id, LinkedList<Person> pList) {
+    /**
+     * Creates a list of people who have heard a song
+     * 
+     * @param id
+     *            the identifier for the specific song
+     * @return a list a people who have heard the song associated to the id
+     */
+    public LinkedList<Person> makeHeardList(int id)
+    {
         LinkedList<Person> hList = new LinkedList<Person>();
-        
+
         Iterator<Person> iter = pList.iterator();
-        while (iter.hasNext()) {
+        while (iter.hasNext())
+        {
             Person temp = iter.next();
-            if (temp.getHeard(id).equals("Yes")) {
+            if (temp.getHeard(id).equals("Yes"))
+            {
                 hList.add(temp);
             }
         }
@@ -163,12 +212,22 @@ public class FileReader extends LinkedList<Person> {
     }
 
 
-    public LinkedList<Person> makeLikedList(int id, LinkedList<Person> pList) {
+    /**
+     * * Creates a list of people who have liked a song
+     * 
+     * @param id
+     *            the identifier for the specific song
+     * @return a list a people who have liked the song associated to the id
+     */
+    public LinkedList<Person> makeLikedList(int id)
+    {
         LinkedList<Person> LList = new LinkedList<Person>();
         Iterator<Person> iter = pList.iterator();
-        while (iter.hasNext()) {
+        while (iter.hasNext())
+        {
             Person temp = iter.next();
-            if (temp.getLiked(id).equals("Yes")) {
+            if (temp.getLiked(id).equals("Yes"))
+            {
                 LList.add(temp);
             }
         }
@@ -176,16 +235,27 @@ public class FileReader extends LinkedList<Person> {
     }
 
 
-    public int getRLength(String str) {
+    /**
+     * Returns the correct length of the data from the survey
+     * 
+     * @param str
+     *            the survey data
+     * @return the length of th edata
+     */
+    private int getRLength(String str)
+    {
         Scanner length = null;
-        try {
+        try
+        {
             length = new Scanner(new File(str));
         }
-        catch (FileNotFoundException e) {
+        catch (FileNotFoundException e)
+        {
             e.printStackTrace();
         }
         int count = -1;
-        while (length.hasNextLine()) {
+        while (length.hasNextLine())
+        {
             length.nextLine();
             count++;
         }

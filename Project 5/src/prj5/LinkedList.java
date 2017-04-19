@@ -9,6 +9,7 @@ import java.util.Iterator;
  * This class is meant be the linked implementation of a list
  * 
  * @author Ben Bilbro (benzb), Sean Seth (ssean7), Tej Patel (tej0126)
+ * @version 04.19.17
  * @param <T>
  *            The generic type
  */

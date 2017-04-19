@@ -8,6 +8,7 @@ package prj5;
  * object
  * 
  * @author Ben Bilbro (benzb), Sean Seth (ssean7), Tej Patel (tej0126)
+ * @version 04.19.17
  *
  */
 public enum MajorEnum

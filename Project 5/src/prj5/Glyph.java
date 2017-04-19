@@ -8,137 +8,136 @@ import CS2114.Shape;
 import CS2114.TextShape;
 
 /**
+ * This class contains the implementation for all of the shapes associated to
+ * creating a visual representation of each song's data according to a specific
+ * attribute (major, region, hobby)
+ * 
  * @author Ben Bilbro (benzb), Sean Seth (ssean7), Tej Patel (tej0126)
- *
+ * @version 04.19.17
  */
-public class Glyph {
+public class Glyph
+{
 
     private static final int BAR_WIDTH = 100;
-
     private Song song;
 
-    // actual glyph shapes
     private Shape purpleLBar;
     private Shape blueLBar;
-    private Shape yellowLBar;
+    private Shape orangeLBar;
     private Shape greenLBar;
     private Shape purpleRBar;
     private Shape blueRBar;
-    private Shape yellowRBar;
+    private Shape orangeRBar;
     private Shape greenRBar;
     private Shape blackBar;
 
     private TextShape title;
-    // this textShape will change as sorted
-    private TextShape variantText;
+    private TextShape artist;
 
 
-    public Glyph(Song song) {
+    /**
+     * Creates a default glyph object (temporary for submission)
+     */
+    public Glyph()
+    {
+        // default Glyph
+    }
+
+
+    /**
+     * Creates a new Glyph object with a song passed to its
+     * 
+     * @param song
+     *            the song associated to the data that will be displayed
+     * 
+     */
+    public Glyph(Song song)
+    {
         this.song = song;
     }
 
 
-    public int[][] sortByHobby() {
-        return song.getResults(HobbyEnum.class);
+    /**
+     * Sorts the song's data by the people's, in the list, hobbies
+     * 
+     * @return a 2D array of all of the values from each person of each hobby
+     *         for hearing or liking the song
+     */
+    public int[][] sortByHobby()
+    {
+        return song.sortByHobby();
     }
 
 
-    public int[][] sortByRegion() {
-        return song.getResults(RegionEnum.class);
+    /**
+     * Sorts the song's data by the people's, in the list, regions
+     * 
+     * @return a 2D array of all of the values from each person of each region
+     *         for hearing or liking the song
+     */
+    public int[][] sortByRegion()
+    {
+        return song.sortByRegion();
     }
 
 
-    public int[][] sortByMajor() {
-        return song.getResults(MajorEnum.class);
+    /**
+     * Sorts the song's data by the people's, in the list, majors
+     * 
+     * @return a 2D array of all of the values from each person of each major
+     *         for hearing or liking the song
+     */
+    public int[][] sortByMajor()
+    {
+        return song.sortByMajor();
     }
 
 
-    public Song getSong() {
+    /**
+     * Returns the song associated to this glyph
+     * 
+     * @return the song with the glyph
+     */
+    public Song getSong()
+    {
         return song;
     }
 
 
-    public Shape[] getMajorShapes() {
-        int[][] majorArr = sortByMajor();
-        int cmdaMathH = majorArr[0][0];
-        int compSciH = majorArr[0][1];
-        int otherEngeH = majorArr[0][2];
-        int otherH = majorArr[0][3];
-        int cmdaMathL = majorArr[1][0];
-        int compSciL = majorArr[1][1];
-        int otherEngeL = majorArr[1][2];
-        int otherL = majorArr[1][3];
-        purpleLBar = new Shape(0, 0, cmdaMathH * BAR_WIDTH, 10, Color.MAGENTA);
-        blueLBar = new Shape(0, 0, compSciH * BAR_WIDTH, 10, Color.BLUE);
-        yellowLBar = new Shape(0, 0, otherEngeH * BAR_WIDTH, 10, Color.YELLOW);
-        greenLBar = new Shape(0, 0, otherH * BAR_WIDTH, 10, Color.GREEN);
-        purpleRBar = new Shape(0, 0, cmdaMathL * BAR_WIDTH, 10, Color.MAGENTA);
-        blueRBar = new Shape(0, 0, compSciL * BAR_WIDTH, 10, Color.BLUE);
-        yellowRBar = new Shape(0, 0, otherEngeL * BAR_WIDTH, 10, Color.YELLOW);
-        greenRBar = new Shape(0, 0, otherL * BAR_WIDTH, 10, Color.GREEN);
-        blackBar = new Shape(0, 0, 10, 50);
-        title = new TextShape(0, 0, song.getTitle());
-        variantText = new TextShape(0, 0, song.getGenre());
+    /**
+     * Creates a default glyph with constant bar values
+     * 
+     * @return an array of shapes that will be used in the ProjectWindow to
+     *         place all of the shapes together to create a visualized glyph
+     */
+    public Shape[] defaultGlyph()
+    {
+        purpleLBar = new Shape(0, 0, BAR_WIDTH, 10, Color.MAGENTA);
+        blueLBar = new Shape(0, 0, BAR_WIDTH, 10, Color.BLUE);
+        orangeLBar = new Shape(0, 0, BAR_WIDTH, 10, Color.ORANGE);
+        greenLBar = new Shape(0, 0, BAR_WIDTH, 10, Color.GREEN);
+        purpleRBar = new Shape(0, 0, BAR_WIDTH, 10, Color.MAGENTA);
+        blueRBar = new Shape(0, 0, BAR_WIDTH, 10, Color.BLUE);
+        orangeRBar = new Shape(0, 0, BAR_WIDTH, 10, Color.ORANGE);
+        greenRBar = new Shape(0, 0, BAR_WIDTH, 10, Color.GREEN);
+        blackBar = new Shape(0, 0, 10, 40, Color.BLACK);
+        title = new TextShape(0, 0, "Song Title");
+        artist = new TextShape(0, 0, "By: Artist Name");
 
-        Shape[] majorShapes = new Shape[11];
-        majorShapes[0] = purpleLBar;
-        majorShapes[1] = blueLBar;
-        majorShapes[2] = yellowLBar;
-        majorShapes[3] = greenLBar;
-        majorShapes[4] = purpleRBar;
-        majorShapes[5] = blueRBar;
-        majorShapes[6] = yellowRBar;
-        majorShapes[7] = greenRBar;
-        majorShapes[8] = blackBar;
-        majorShapes[9] = title;
-        majorShapes[10] = variantText;
+        Shape[] defaultShapes = new Shape[11];
+        defaultShapes[0] = purpleLBar;
+        defaultShapes[1] = blueLBar;
+        defaultShapes[2] = orangeLBar;
+        defaultShapes[3] = greenLBar;
+        defaultShapes[4] = purpleRBar;
+        defaultShapes[5] = blueRBar;
+        defaultShapes[6] = orangeRBar;
+        defaultShapes[7] = greenRBar;
+        defaultShapes[8] = blackBar;
+        defaultShapes[9] = title;
+        defaultShapes[10] = artist;
 
-        return majorShapes;
-    }
-
-
-    public Shape[] getRegionShapes() {
-        
-        int[][] regionArr = sortByRegion();
-        int northH = regionArr[0][0];
-        int southH = regionArr[0][1];
-        int otherH = regionArr[0][2];
-        int outH = regionArr[0][3];
-        int northL = regionArr[1][0];
-        int southL = regionArr[1][1];
-        int otherL = regionArr[1][2];
-        int outL = regionArr[1][3];
-        purpleLBar = new Shape(0, 0, northH * BAR_WIDTH, 10, Color.MAGENTA);
-        blueLBar = new Shape(0, 0, southH * BAR_WIDTH, 10, Color.BLUE);
-        yellowLBar = new Shape(0, 0, otherH * BAR_WIDTH, 10, Color.YELLOW);
-        greenLBar = new Shape(0, 0, outH * BAR_WIDTH, 10, Color.GREEN);
-        purpleRBar = new Shape(0, 0, northL * BAR_WIDTH, 10, Color.MAGENTA);
-        blueRBar = new Shape(0, 0, southL * BAR_WIDTH, 10, Color.BLUE);
-        yellowRBar = new Shape(0, 0, otherL * BAR_WIDTH, 10, Color.YELLOW);
-        greenRBar = new Shape(0, 0, outL * BAR_WIDTH, 10, Color.GREEN);
-        blackBar = new Shape(0, 0, 10, 50);
-        title = new TextShape(0, 0, song.getTitle());
-        variantText = new TextShape(0, 0, song.getGenre());
-
-        Shape[] regionShapes = new Shape[11];
-        regionShapes[0] = purpleLBar;
-        regionShapes[1] = blueLBar;
-        regionShapes[2] = yellowLBar;
-        regionShapes[3] = greenLBar;
-        regionShapes[4] = purpleRBar;
-        regionShapes[5] = blueRBar;
-        regionShapes[6] = yellowRBar;
-        regionShapes[7] = greenRBar;
-        regionShapes[8] = blackBar;
-        regionShapes[9] = title;
-        regionShapes[10] = variantText;
-
-        return regionShapes;
-    }
-
-
-    public Shape[] getHobbyShapes() {
-        return new Shape[1];
+        return defaultShapes;
     }
 
 }

@@ -6,6 +6,9 @@ package prj5;
 import java.util.Iterator;
 
 /**
+ * Class that creates new song objects and has sort functions for the people
+ * lists
+ * 
  * @author Ben Bilbro (benzb), Sean Seth (ssean7), Tej Patel (tej0126)
  *
  */
@@ -61,73 +64,91 @@ public class Song
 
 
     /**
+     * Method that gets the artist of the song
      * 
-     * @param enumClass
-     * @return
+     * @return String is the artist of the song
      */
-    public int[][] getResults(Class<?> enumClass)
-    {
-        if (enumClass.equals(HobbyEnum.class))
-        {
-            return sortByHobby();
-        }
-        else if (enumClass.equals(RegionEnum.class))
-        {
-            return sortByRegion();
-        }
-        else if (enumClass.equals(MajorEnum.class))
-        {
-            return sortByMajor();
-        }
-        else
-        {
-            return null;
-        }
-    }
-
-
     public String getArtist()
     {
         return artist;
     }
 
 
+    /**
+     * Method that gets the title of the song
+     * 
+     * @return String is the title of the song
+     */
     public String getTitle()
     {
         return title;
     }
 
 
+    /**
+     * Method that gets the genre of the song
+     * 
+     * @return String is the genre of the song
+     */
     public String getGenre()
     {
         return genre;
     }
 
 
+    /**
+     * Method that gets the date of the song
+     * 
+     * @return String is the date of the song
+     */
     public String getDate()
     {
         return date;
     }
 
 
+    /**
+     * Method that gets the heardList
+     * 
+     * @return LinkedList<Person> is the heardList
+     */
     public LinkedList<Person> getHeardList()
     {
         return heardList;
     }
 
 
+    /**
+     * Method that gets the likedList
+     * 
+     * @return LinkedList<Person> is the likedList
+     */
     public LinkedList<Person> getLikedList()
     {
         return likedList;
     }
 
 
+    /**
+     * Method that formats the song's information into String form
+     * 
+     * @return String is the String format of the song's information
+     */
     public String toString()
     {
         return title + " by " + artist + ", " + genre + "; " + date;
     }
 
 
+    /**
+     * Method that uses the heard and liked lists of people and returns a 2D
+     * array filled with the percentages of people with certain hobbies who have
+     * heard and/or liked the song
+     * 
+     * @return int[][] is the 2D array filled with percentages of the people, of
+     *         certain hobbies, who hear and/or liked the song out of all the
+     *         people
+     */
     public int[][] sortByHobby()
     {
         double readH = 0;
@@ -205,6 +226,15 @@ public class Song
     }
 
 
+    /**
+     * Method that uses the heard and liked lists of people and returns a 2D
+     * array filled with the percentages of people with certain regions who have
+     * heard and/or liked the song
+     * 
+     * @return int[][] is the 2D array filled with percentages of the people, of
+     *         certain regions, who hear and/or liked the song out of all the
+     *         people
+     */
     public int[][] sortByRegion()
     {
         double northEH = 0;
@@ -285,6 +315,15 @@ public class Song
     }
 
 
+    /**
+     * Method that uses the heard and liked lists of people and returns a 2D
+     * array filled with the percentages of people with certain majors who have
+     * heard and/or liked the song
+     * 
+     * @return int[][] is the 2D array filled with percentages of the people, of
+     *         certain majors, who hear and/or liked the song out of all the
+     *         people
+     */
     public int[][] sortByMajor()
     {
         double mathH = 0;

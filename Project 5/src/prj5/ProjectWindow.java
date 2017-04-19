@@ -10,10 +10,15 @@ import CS2114.Window;
 import CS2114.WindowSide;
 
 /**
+ * Has the display where the user will interact with the buttons to view the
+ * information
+ * 
  * @author Ben Bilbro (benzb), Sean Seth (ssean7), Tej Patel (tej0126)
+ * @version April 19, 2017
  *
  */
-public class ProjectWindow {
+public class ProjectWindow
+{
 
     private LinkedList<Glyph> gList;
     private Window window;
@@ -29,7 +34,14 @@ public class ProjectWindow {
     private Button quit;
 
 
-    public ProjectWindow(LinkedList<Glyph> glyphList) {
+    /**
+     * Constructor that initializes all the instance data
+     * 
+     * @param glyphList
+     *            is the list of glyphs that will be displayed
+     */
+    public ProjectWindow(LinkedList<Glyph> glyphList)
+    {
         this.gList = glyphList;
 
         sortGlyphGenre(gList);
@@ -46,12 +58,52 @@ public class ProjectWindow {
     }
 
 
-    private void initializeGlyphs() {
-        
+    /**
+     * Helper method that initializes the glyphs and displays them
+     */
+    private void initializeGlyphs()
+    {
+        Glyph glyph = new Glyph();
+
+        Shape[] shapes = glyph.defaultGlyph();
+        int height = 0;
+        for (int i = 0; i < 4; i++)
+        {
+            shapes[i].setX(20);
+            shapes[i].setY(50 + height);
+            window.addShape(shapes[i]);
+            height += 10;
+        }
+        height = 0;
+        for (int i = 4; i < 8; i++)
+        {
+            shapes[i].setX(130);
+            shapes[i].setY(50 + height);
+            window.addShape(shapes[i]);
+            height += 10;
+        }
+
+        shapes[8].setX(120);
+        shapes[8].setY(50);
+        window.addShape(shapes[8]);
+
+        shapes[9].setX(90);
+        shapes[9].setY(10);
+        shapes[9].setBackgroundColor(Color.WHITE);
+        window.addShape(shapes[9]);
+
+        shapes[10].setX(90);
+        shapes[10].setY(30);
+        shapes[10].setBackgroundColor(Color.WHITE);
+        window.addShape(shapes[10]);
     }
 
 
-    private void initializeButtons() {
+    /**
+     * Initializes the buttons and displays them
+     */
+    private void initializeButtons()
+    {
         prev = new Button("<-- Prev");
         sortArtist = new Button("Sort by Artist Name");
         sortTitle = new Button("Sort by Song Title");
@@ -76,9 +128,17 @@ public class ProjectWindow {
     }
 
 
-    public void sortHobby(LinkedList<Glyph> gList) {
+    /**
+     * Displays each glyph's information to the console per Hobby
+     * 
+     * @param gList
+     *            is the list of glyphs used to display the information
+     */
+    public void sortHobby(LinkedList<Glyph> gList)
+    {
         Object[] output = gList.toArray();
-        for (int i = 0; i < output.length; i++) {
+        for (int i = 0; i < output.length; i++)
+        {
             System.out.println("Song Title: " + ((Glyph)output[i]).getSong()
                 .getTitle());
             System.out.println("Song Artist: " + ((Glyph)output[i]).getSong()
@@ -88,12 +148,16 @@ public class ProjectWindow {
             System.out.println("Song Year: " + ((Glyph)output[i]).getSong()
                 .getDate());
             int[][] responses = ((Glyph)output[i]).sortByHobby();
-            for (int x = 0; x < responses.length; x++) {
-                for (int y = 0; y < responses[0].length; y += 4) {
-                    if (x == 0) {
+            for (int x = 0; x < responses.length; x++)
+            {
+                for (int y = 0; y < responses[0].length; y += 4)
+                {
+                    if (x == 0)
+                    {
                         System.out.println("Heard");
                     }
-                    else {
+                    else
+                    {
                         System.out.println("Likes");
                     }
                     System.out.print("reading:" + responses[x][y] + " ");
@@ -108,9 +172,17 @@ public class ProjectWindow {
     }
 
 
-    public void sortMajor(LinkedList<Glyph> gList) {
+    /**
+     * Prints the glyph's information to the console per Major
+     * 
+     * @param gList
+     *            is the list of glyphs used to display the information
+     */
+    public void sortMajor(LinkedList<Glyph> gList)
+    {
         Object[] output = gList.toArray();
-        for (int i = 0; i < output.length; i++) {
+        for (int i = 0; i < output.length; i++)
+        {
             System.out.println("Song Title: " + ((Glyph)output[i]).getSong()
                 .getTitle());
             System.out.println("Song Artist: " + ((Glyph)output[i]).getSong()
@@ -120,12 +192,16 @@ public class ProjectWindow {
             System.out.println("Song Year: " + ((Glyph)output[i]).getSong()
                 .getDate());
             int[][] responses = ((Glyph)output[i]).sortByMajor();
-            for (int x = 0; x < responses.length; x++) {
-                for (int y = 0; y < responses[0].length; y += 4) {
-                    if (x == 0) {
+            for (int x = 0; x < responses.length; x++)
+            {
+                for (int y = 0; y < responses[0].length; y += 4)
+                {
+                    if (x == 0)
+                    {
                         System.out.println("Heard");
                     }
-                    else {
+                    else
+                    {
                         System.out.println("Likes");
                     }
                     System.out.print("Math or CMDA:" + responses[x][y] + " ");
@@ -142,9 +218,17 @@ public class ProjectWindow {
     }
 
 
-    public void sortRegion(LinkedList<Glyph> gList) {
+    /**
+     * Prints the glyph's information to the console per Region
+     * 
+     * @param gList
+     *            is the list of glyphs used to display the information
+     */
+    public void sortRegion(LinkedList<Glyph> gList)
+    {
         Object[] output = gList.toArray();
-        for (int i = 0; i < output.length; i++) {
+        for (int i = 0; i < output.length; i++)
+        {
             System.out.println("Song Title: " + ((Glyph)output[i]).getSong()
                 .getTitle());
             System.out.println("Song Artist: " + ((Glyph)output[i]).getSong()
@@ -154,12 +238,16 @@ public class ProjectWindow {
             System.out.println("Song Year: " + ((Glyph)output[i]).getSong()
                 .getDate());
             int[][] responses = ((Glyph)output[i]).sortByRegion();
-            for (int x = 0; x < responses.length; x++) {
-                for (int y = 0; y < responses[0].length; y += 4) {
-                    if (x == 0) {
+            for (int x = 0; x < responses.length; x++)
+            {
+                for (int y = 0; y < responses[0].length; y += 4)
+                {
+                    if (x == 0)
+                    {
                         System.out.println("Heard");
                     }
-                    else {
+                    else
+                    {
                         System.out.println("Likes");
                     }
                     System.out.print("Northeast:" + responses[x][y] + " ");
@@ -176,11 +264,19 @@ public class ProjectWindow {
     }
 
 
-    public void sortGlyphGenre(LinkedList<Glyph> glyphList) {
+    /**
+     * Sorts the glyphs by genre
+     * 
+     * @param glyphList
+     *            is the list of glyphs to be sorted
+     */
+    public void sortGlyphGenre(LinkedList<Glyph> glyphList)
+    {
         Object[] arr = glyphList.toArray();
         int i, j, first;
         Glyph temp;
-        for (i = arr.length - 1; i > 0; i--) {
+        for (i = arr.length - 1; i > 0; i--)
+        {
             first = 0; // initialize to subscript of first element
             for (j = 1; j <= i; j++) // locate smallest element between
                                      // positions 1 and i.
@@ -196,18 +292,27 @@ public class ProjectWindow {
             arr[i] = temp;
         }
         gList.clear();
-        for (int z = arr.length - 1; z >= 0; z--) {
+        for (int z = arr.length - 1; z >= 0; z--)
+        {
             gList.add(((Glyph)arr[z]));
         }
 
     }
 
 
-    public void sortGlyphTitle(LinkedList<Glyph> glyphList) {
+    /**
+     * Sorts the glyphs by title
+     * 
+     * @param glyphList
+     *            is the list of glyphs to be sorted
+     */
+    public void sortGlyphTitle(LinkedList<Glyph> glyphList)
+    {
         Object[] arr = glyphList.toArray();
         int i, j, first;
         Glyph temp;
-        for (i = arr.length - 1; i > 0; i--) {
+        for (i = arr.length - 1; i > 0; i--)
+        {
             first = 0; // initialize to subscript of first element
             for (j = 1; j <= i; j++) // locate smallest element between
                                      // positions 1 and i.
@@ -223,7 +328,8 @@ public class ProjectWindow {
             arr[i] = temp;
         }
         gList.clear();
-        for (int z = arr.length - 1; z >= 0; z--) {
+        for (int z = arr.length - 1; z >= 0; z--)
+        {
             gList.add(((Glyph)arr[z]));
         }
 

@@ -8,7 +8,7 @@ package prj5;
  * object
  * 
  * @author Ben Bilbro (benzb) Sean Seth (ssean7)
- *
+ * @version 04.19.17
  */
 public enum HobbyEnum
 {

@@ -8,7 +8,7 @@ package prj5;
  * Person object
  * 
  * @author Ben Bilbro (benzb), Sean Seth (ssean7), Tej Patel (tej0126)
- * @version
+ * @version 04.19.17
  */
 public enum RegionEnum
 {
