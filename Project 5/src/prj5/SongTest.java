@@ -45,27 +45,27 @@ public class SongTest extends student.TestCase
         heardList = new LinkedList<Person>();
         likedList = new LinkedList<Person>();
 
-        p1 = new Person(1, MajorEnum.MATH_CMDA, RegionEnum.NORTHEAST,
+        p1 = new Person(MajorEnum.MATH_CMDA, RegionEnum.NORTHEAST,
             HobbyEnum.ART, arr1);
 
-        p2 = new Person(2, MajorEnum.COMP_SCI, RegionEnum.SOUTHEAST,
+        p2 = new Person(MajorEnum.COMP_SCI, RegionEnum.SOUTHEAST,
             HobbyEnum.MUSIC, arr2);
 
-        p3 = new Person(3, MajorEnum.OTHER_ENGE, RegionEnum.OTHER_US,
+        p3 = new Person(MajorEnum.OTHER_ENGE, RegionEnum.OTHER_US,
             HobbyEnum.READING, arr3);
 
-        p4 = new Person(4, MajorEnum.OTHER, RegionEnum.OUTSIDE_US,
+        p4 = new Person(MajorEnum.OTHER, RegionEnum.OUTSIDE_US,
             HobbyEnum.SPORTS, arr4);
 
-        p5 = new Person(1, MajorEnum.MATH_CMDA, RegionEnum.NORTHEAST,
+        p5 = new Person(MajorEnum.MATH_CMDA, RegionEnum.NORTHEAST,
             HobbyEnum.ART, arr1);
-        p6 = new Person(2, MajorEnum.COMP_SCI, RegionEnum.SOUTHEAST,
+        p6 = new Person(MajorEnum.COMP_SCI, RegionEnum.SOUTHEAST,
             HobbyEnum.MUSIC, arr2);
 
-        p7 = new Person(3, MajorEnum.OTHER_ENGE, RegionEnum.OTHER_US,
+        p7 = new Person(MajorEnum.OTHER_ENGE, RegionEnum.OTHER_US,
             HobbyEnum.READING, arr3);
 
-        p8 = new Person(4, MajorEnum.OTHER, RegionEnum.OUTSIDE_US,
+        p8 = new Person(MajorEnum.OTHER, RegionEnum.OUTSIDE_US,
             HobbyEnum.SPORTS, arr4);
 
         heardList.add(p1);

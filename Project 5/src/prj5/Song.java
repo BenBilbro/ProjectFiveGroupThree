@@ -10,12 +10,13 @@ import java.util.Iterator;
  * lists
  * 
  * @author Ben Bilbro (benzb), Sean Seth (ssean7), Tej Patel (tej0126)
+ * @version 04.19.17
  *
  */
 public class Song
 {
 
-    public int id;
+    private int id;
     private String artist;
     private String genre;
     private String title;
@@ -165,24 +166,26 @@ public class Song
         while (iter.hasNext())
         {
             Person temp = iter.next();
-            if (temp.getHobby() != null)
+
+            switch (temp.getHobby())
             {
-                switch (temp.getHobby())
-                {
-                    case READING:
-                        readH++;
-                        break;
-                    case ART:
-                        artH++;
-                        break;
-                    case MUSIC:
-                        musicH++;
-                        break;
-                    case SPORTS:
-                        sportH++;
-                        break;
-                }
+                case READING:
+                    readH++;
+                    break;
+                case ART:
+                    artH++;
+                    break;
+                case MUSIC:
+                    musicH++;
+                    break;
+                case SPORTS:
+                    sportH++;
+                    break;
+                default:
+                    break;
+
             }
+
         }
 
         iter = likedList.iterator();
@@ -190,25 +193,24 @@ public class Song
         while (iter.hasNext())
         {
             Person temp = iter.next();
-            if (temp.getHobby() != null)
+            switch (temp.getHobby())
             {
-                switch (temp.getHobby())
-                {
-                    case READING:
-                        readL++;
-                        break;
-                    case ART:
-                        artL++;
-                        break;
-                    case MUSIC:
-                        musicL++;
-                        break;
-                    case SPORTS:
-                        sportL++;
-                        break;
-                }
-
+                case READING:
+                    readL++;
+                    break;
+                case ART:
+                    artL++;
+                    break;
+                case MUSIC:
+                    musicL++;
+                    break;
+                case SPORTS:
+                    sportL++;
+                    break;
+                default:
+                    break;
             }
+
         }
         int[] hHTotal = PersonList.getHobbyHTotal(id);
         int[] hLTotal = PersonList.getHobbyLTotal(id);
@@ -251,25 +253,24 @@ public class Song
         while (iter.hasNext())
         {
             Person temp = iter.next();
-            if (temp.getRegion() != null)
+            switch (temp.getRegion())
             {
-                switch (temp.getRegion())
-                {
-                    case NORTHEAST:
-                        northEH++;
-                        break;
-                    case SOUTHEAST:
-                        southEH++;
-                        break;
-                    case OTHER_US:
-                        otherH++;
-                        break;
-                    case OUTSIDE_US:
-                        outH++;
-                        break;
-                }
-
+                case NORTHEAST:
+                    northEH++;
+                    break;
+                case SOUTHEAST:
+                    southEH++;
+                    break;
+                case OTHER_US:
+                    otherH++;
+                    break;
+                case OUTSIDE_US:
+                    outH++;
+                    break;
+                default:
+                    break;
             }
+
         }
 
         iter = likedList.iterator();
@@ -277,25 +278,24 @@ public class Song
         while (iter.hasNext())
         {
             Person temp = iter.next();
-            if (temp.getRegion() != null)
+            switch (temp.getRegion())
             {
-                switch (temp.getRegion())
-                {
-                    case NORTHEAST:
-                        northEL++;
-                        break;
-                    case SOUTHEAST:
-                        southEL++;
-                        break;
-                    case OTHER_US:
-                        otherL++;
-                        break;
-                    case OUTSIDE_US:
-                        outL++;
-                        break;
-                }
-
+                case NORTHEAST:
+                    northEL++;
+                    break;
+                case SOUTHEAST:
+                    southEL++;
+                    break;
+                case OTHER_US:
+                    otherL++;
+                    break;
+                case OUTSIDE_US:
+                    outL++;
+                    break;
+                default:
+                    break;
             }
+
         }
 
         int[] rHTotal = PersonList.getRegionHTotal(id);
@@ -341,51 +341,52 @@ public class Song
         while (iter.hasNext())
         {
             Person temp = iter.next();
-            if (temp.getMajor() != null)
-            {
-                switch (temp.getMajor())
-                {
-                    case MATH_CMDA:
-                        mathH++;
-                        break;
-                    case COMP_SCI:
-                        compSciH++;
-                        break;
-                    case OTHER_ENGE:
-                        otherEngeH++;
-                        break;
-                    case OTHER:
-                        otherH++;
-                        break;
-                }
 
+            switch (temp.getMajor())
+            {
+                case MATH_CMDA:
+                    mathH++;
+                    break;
+                case COMP_SCI:
+                    compSciH++;
+                    break;
+                case OTHER_ENGE:
+                    otherEngeH++;
+                    break;
+                case OTHER:
+                    otherH++;
+                    break;
+                default:
+                    break;
             }
+
         }
 
         iter = likedList.iterator();
 
         while (iter.hasNext())
+
         {
             Person temp = iter.next();
-            if (temp.getMajor() != null)
-            {
-                switch (temp.getMajor())
-                {
-                    case MATH_CMDA:
-                        mathL++;
-                        break;
-                    case COMP_SCI:
-                        compSciL++;
-                        break;
-                    case OTHER_ENGE:
-                        otherEngeL++;
-                        break;
-                    case OTHER:
-                        otherL++;
-                        break;
-                }
 
+            switch (temp.getMajor())
+            {
+                case MATH_CMDA:
+                    mathL++;
+                    break;
+                case COMP_SCI:
+                    compSciL++;
+                    break;
+                case OTHER_ENGE:
+                    otherEngeL++;
+                    break;
+                case OTHER:
+                    otherL++;
+                    break;
+                default:
+                    break;
             }
+
         }
 
         int[] mHTotal = PersonList.getMajorHTotal(id);

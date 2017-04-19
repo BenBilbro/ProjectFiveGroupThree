@@ -70,6 +70,8 @@ public class PersonList
                         case SPORTS:
                             sport++;
                             break;
+                        default:
+                            break;
                     }
                 }
             }
@@ -122,6 +124,8 @@ public class PersonList
                         case SPORTS:
                             sport++;
                             break;
+                        default:
+                            break;
                     }
                 }
             }
@@ -173,6 +177,8 @@ public class PersonList
                             break;
                         case OTHER:
                             other++;
+                            break;
+                        default:
                             break;
                     }
                 }
@@ -228,6 +234,8 @@ public class PersonList
                         case OTHER:
                             other++;
                             break;
+                        default:
+                            break;
                     }
                 }
             }
@@ -279,6 +287,8 @@ public class PersonList
                             break;
                         case OUTSIDE_US:
                             out++;
+                            break;
+                        default:
                             break;
                     }
                 }
@@ -332,6 +342,8 @@ public class PersonList
                             break;
                         case OUTSIDE_US:
                             out++;
+                            break;
+                        default:
                             break;
                     }
                 }
