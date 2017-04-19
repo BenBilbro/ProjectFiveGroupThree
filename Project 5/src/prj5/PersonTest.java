@@ -23,7 +23,7 @@ public class PersonTest extends student.TestCase
         arr[2] = "yes, ";
         arr[3] = " ,no";
 
-        p1 = new Person(1, MajorEnum.MATH_CMDA, RegionEnum.NORTHEAST,
+        p1 = new Person(MajorEnum.MATH_CMDA, RegionEnum.NORTHEAST,
             HobbyEnum.READING, arr);
     }
 
@@ -64,15 +64,6 @@ public class PersonTest extends student.TestCase
     public void testGetResponses()
     {
         assertEquals(arr, p1.getResponses());
-    }
-
-
-    /**
-     * tests to make sure that the correct id is returned
-     */
-    public void testGetId()
-    {
-        assertEquals(1, p1.getId());
     }
 
 

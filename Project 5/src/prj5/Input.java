@@ -24,12 +24,7 @@ public class Input
     {
         if (args.length == 2)
         {
-            new FileReader(args[0], args[1]);
-        }
-        else
-        {
-            new FileReader("MusicSurveyDataNoGenreRepeats.csv",
-                "SongListNoGenreRepeats.csv");
+            new ProjectRunner(args[0], args[1]);
         }
     }
 }

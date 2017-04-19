@@ -14,7 +14,6 @@ package prj5;
 public class Person
 {
 
-    private int id;
     private String[] responses;
     private MajorEnum major;
     private HobbyEnum hobby;
@@ -34,13 +33,11 @@ public class Person
      *            array of strings of the persons responses to songs
      */
     public Person(
-        int id,
         MajorEnum major,
         RegionEnum region,
         HobbyEnum hobby,
         String[] responses)
     {
-        this.id = id;
         this.major = major;
         this.hobby = hobby;
         this.region = region;
@@ -125,18 +122,6 @@ public class Person
             return strArr[1];
         }
         return "";
-    }
-
-
-    /**
-     * Returns the identification number for the person in order to keep track
-     * of people
-     * 
-     * @return the identification number
-     */
-    public int getId()
-    {
-        return id;
     }
 
 }
