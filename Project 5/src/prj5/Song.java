@@ -10,12 +10,12 @@ import java.util.Iterator;
  * lists
  * 
  * @author Ben Bilbro (benzb), Sean Seth (ssean7), Tej Patel (tej0126)
+ * @version 04.19.17
  *
  */
-public class Song
-{
+public class Song {
 
-    public int id;
+    private int id;
     private String artist;
     private String genre;
     private String title;
@@ -49,8 +49,7 @@ public class Song
         String t,
         String d,
         LinkedList<Person> hL,
-        LinkedList<Person> lL)
-    {
+        LinkedList<Person> lL) {
 
         this.id = id;
         artist = a;
@@ -68,8 +67,7 @@ public class Song
      * 
      * @return String is the artist of the song
      */
-    public String getArtist()
-    {
+    public String getArtist() {
         return artist;
     }
 
@@ -79,8 +77,7 @@ public class Song
      * 
      * @return String is the title of the song
      */
-    public String getTitle()
-    {
+    public String getTitle() {
         return title;
     }
 
@@ -90,8 +87,7 @@ public class Song
      * 
      * @return String is the genre of the song
      */
-    public String getGenre()
-    {
+    public String getGenre() {
         return genre;
     }
 
@@ -101,8 +97,7 @@ public class Song
      * 
      * @return String is the date of the song
      */
-    public String getDate()
-    {
+    public String getDate() {
         return date;
     }
 
@@ -112,8 +107,7 @@ public class Song
      * 
      * @return LinkedList<Person> is the heardList
      */
-    public LinkedList<Person> getHeardList()
-    {
+    public LinkedList<Person> getHeardList() {
         return heardList;
     }
 
@@ -123,8 +117,7 @@ public class Song
      * 
      * @return LinkedList<Person> is the likedList
      */
-    public LinkedList<Person> getLikedList()
-    {
+    public LinkedList<Person> getLikedList() {
         return likedList;
     }
 
@@ -134,8 +127,7 @@ public class Song
      * 
      * @return String is the String format of the song's information
      */
-    public String toString()
-    {
+    public String toString() {
         return title + " by " + artist + ", " + genre + "; " + date;
     }
 
@@ -149,8 +141,7 @@ public class Song
      *         certain hobbies, who hear and/or liked the song out of all the
      *         people
      */
-    public int[][] sortByHobby()
-    {
+    public int[][] sortByHobby() {
         double readH = 0;
         double artH = 0;
         double musicH = 0;
@@ -162,57 +153,61 @@ public class Song
         int[][] hobbyArr = new int[2][4];
         Iterator<Person> iter = heardList.iterator();
 
-        while (iter.hasNext())
-        {
+        // goes through the heardList and counts every person by hobby
+        while (iter.hasNext()) {
             Person temp = iter.next();
-            if (temp.getHobby() != null)
-            {
-                switch (temp.getHobby())
-                {
-                    case READING:
-                        readH++;
-                        break;
-                    case ART:
-                        artH++;
-                        break;
-                    case MUSIC:
-                        musicH++;
-                        break;
-                    case SPORTS:
-                        sportH++;
-                        break;
-                }
+
+            switch (temp.getHobby()) {
+                case READING:
+                    readH++;
+                    break;
+                case ART:
+                    artH++;
+                    break;
+                case MUSIC:
+                    musicH++;
+                    break;
+                case SPORTS:
+                    sportH++;
+                    break;
+                default:
+                    break;
+
             }
+
         }
 
         iter = likedList.iterator();
 
-        while (iter.hasNext())
-        {
+        // goes through the likedList and counts every person by hobby
+        while (iter.hasNext()) {
             Person temp = iter.next();
-            if (temp.getHobby() != null)
-            {
-                switch (temp.getHobby())
-                {
-                    case READING:
-                        readL++;
-                        break;
-                    case ART:
-                        artL++;
-                        break;
-                    case MUSIC:
-                        musicL++;
-                        break;
-                    case SPORTS:
-                        sportL++;
-                        break;
-                }
-
+            switch (temp.getHobby()) {
+                case READING:
+                    readL++;
+                    break;
+                case ART:
+                    artL++;
+                    break;
+                case MUSIC:
+                    musicL++;
+                    break;
+                case SPORTS:
+                    sportL++;
+                    break;
+                default:
+                    break;
             }
-        }
-        int[] hHTotal = PersonList.getHobbyHTotal(id);
-        int[] hLTotal = PersonList.getHobbyLTotal(id);
 
+        }
+        int[] hHTotal = PersonList.getHobbyHTotal(id); // total people who voted
+                                                       // on heard by hobby
+        int[] hLTotal = PersonList.getHobbyLTotal(id); // total people who voted
+                                                       // on liked by hobby
+
+        // computes the percentage of Yes responses to people who voted and puts
+        // it into a 2D array with the first row being heard and second being
+        // liked
         hobbyArr[0][0] = (int)((readH / hHTotal[0]) * 100);
         hobbyArr[0][1] = (int)((artH / hHTotal[1]) * 100);
         hobbyArr[0][2] = (int)((sportH / hHTotal[2]) * 100);
@@ -235,8 +230,7 @@ public class Song
      *         certain regions, who hear and/or liked the song out of all the
      *         people
      */
-    public int[][] sortByRegion()
-    {
+    public int[][] sortByRegion() {
         double northEH = 0;
         double southEH = 0;
         double otherH = 0;
@@ -248,59 +242,61 @@ public class Song
         int[][] regionArr = new int[2][4];
         Iterator<Person> iter = heardList.iterator();
 
-        while (iter.hasNext())
-        {
+        // goes through the heardList and counts every person by region
+        while (iter.hasNext()) {
             Person temp = iter.next();
-            if (temp.getRegion() != null)
-            {
-                switch (temp.getRegion())
-                {
-                    case NORTHEAST:
-                        northEH++;
-                        break;
-                    case SOUTHEAST:
-                        southEH++;
-                        break;
-                    case OTHER_US:
-                        otherH++;
-                        break;
-                    case OUTSIDE_US:
-                        outH++;
-                        break;
-                }
-
+            switch (temp.getRegion()) {
+                case NORTHEAST:
+                    northEH++;
+                    break;
+                case SOUTHEAST:
+                    southEH++;
+                    break;
+                case OTHER_US:
+                    otherH++;
+                    break;
+                case OUTSIDE_US:
+                    outH++;
+                    break;
+                default:
+                    break;
             }
+
         }
 
         iter = likedList.iterator();
 
-        while (iter.hasNext())
-        {
+        // goes through the likedList and counts every person by hobby
+        while (iter.hasNext()) {
             Person temp = iter.next();
-            if (temp.getRegion() != null)
-            {
-                switch (temp.getRegion())
-                {
-                    case NORTHEAST:
-                        northEL++;
-                        break;
-                    case SOUTHEAST:
-                        southEL++;
-                        break;
-                    case OTHER_US:
-                        otherL++;
-                        break;
-                    case OUTSIDE_US:
-                        outL++;
-                        break;
-                }
-
+            switch (temp.getRegion()) {
+                case NORTHEAST:
+                    northEL++;
+                    break;
+                case SOUTHEAST:
+                    southEL++;
+                    break;
+                case OTHER_US:
+                    otherL++;
+                    break;
+                case OUTSIDE_US:
+                    outL++;
+                    break;
+                default:
+                    break;
             }
+
         }
+
+        // total people who voted
+        // on heard and liked by region
 
         int[] rHTotal = PersonList.getRegionHTotal(id);
         int[] rLTotal = PersonList.getRegionLTotal(id);
 
+        // computes the percentage of Yes responses to people who voted and puts
+        // it into a 2D array with the first row being heard and second being
+        // liked
         regionArr[0][0] = (int)((northEH / rHTotal[0]) * 100);
         regionArr[0][1] = (int)((southEH / rHTotal[1]) * 100);
         regionArr[0][2] = (int)((otherH / rHTotal[2]) * 100);
@@ -324,8 +320,7 @@ public class Song
      *         certain majors, who hear and/or liked the song out of all the
      *         people
      */
-    public int[][] sortByMajor()
-    {
+    public int[][] sortByMajor() {
         double mathH = 0;
         double compSciH = 0;
         double otherEngeH = 0;
@@ -338,59 +333,64 @@ public class Song
 
         Iterator<Person> iter = heardList.iterator();
 
-        while (iter.hasNext())
-        {
+        // goes through the heardList and counts every person by major
+        while (iter.hasNext()) {
             Person temp = iter.next();
-            if (temp.getMajor() != null)
-            {
-                switch (temp.getMajor())
-                {
-                    case MATH_CMDA:
-                        mathH++;
-                        break;
-                    case COMP_SCI:
-                        compSciH++;
-                        break;
-                    case OTHER_ENGE:
-                        otherEngeH++;
-                        break;
-                    case OTHER:
-                        otherH++;
-                        break;
-                }
 
+            switch (temp.getMajor()) {
+                case MATH_CMDA:
+                    mathH++;
+                    break;
+                case COMP_SCI:
+                    compSciH++;
+                    break;
+                case OTHER_ENGE:
+                    otherEngeH++;
+                    break;
+                case OTHER:
+                    otherH++;
+                    break;
+                default:
+                    break;
             }
+
         }
 
         iter = likedList.iterator();
 
+        // goes through the likedList and counts every person by hobby
         while (iter.hasNext())
+
         {
             Person temp = iter.next();
-            if (temp.getMajor() != null)
-            {
-                switch (temp.getMajor())
-                {
-                    case MATH_CMDA:
-                        mathL++;
-                        break;
-                    case COMP_SCI:
-                        compSciL++;
-                        break;
-                    case OTHER_ENGE:
-                        otherEngeL++;
-                        break;
-                    case OTHER:
-                        otherL++;
-                        break;
-                }
 
+            switch (temp.getMajor()) {
+                case MATH_CMDA:
+                    mathL++;
+                    break;
+                case COMP_SCI:
+                    compSciL++;
+                    break;
+                case OTHER_ENGE:
+                    otherEngeL++;
+                    break;
+                case OTHER:
+                    otherL++;
+                    break;
+                default:
+                    break;
             }
+
         }
 
+        // total people who voted
+        // on heard and liked by major
         int[] mHTotal = PersonList.getMajorHTotal(id);
         int[] mLTotal = PersonList.getMajorLTotal(id);
 
+        // computes the percentage of Yes responses to people who voted and puts
+        // it into a 2D array with the first row being heard and second being
+        // liked
         majorArr[0][0] = (int)((mathH / mHTotal[0]) * 100);
         majorArr[0][1] = (int)((compSciH / mHTotal[1]) * 100);
         majorArr[0][2] = (int)((otherEngeH / mHTotal[2]) * 100);

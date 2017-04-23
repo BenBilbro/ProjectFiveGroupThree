@@ -7,12 +7,11 @@ package prj5;
  * This class is meant to assist with getting the specified hobby of each Person
  * object
  * 
- * @author Ben Bilbro (benzb) Sean Seth (ssean7)
+ * @author Ben Bilbro (benb16) Sean Seth (ssean7)
  * @version 04.19.17
  */
-public enum HobbyEnum
-{
-    READING, SPORTS, MUSIC, ART;
+public enum HobbyEnum {
+    READING, SPORTS, MUSIC, ART, DEFAULT; // default for testing purposes
 
     /**
      * Checks the string passed for the correct hobby enumeration
@@ -22,22 +21,17 @@ public enum HobbyEnum
      * @return The hobby that is needed if the string is not empty, otherwise
      *         null
      */
-    public static HobbyEnum getHobby(String str)
-    {
-        if (str.equalsIgnoreCase("reading"))
-        {
+    public static HobbyEnum getHobby(String str) {
+        if (str.equalsIgnoreCase("reading")) {
             return READING;
         }
-        if (str.equalsIgnoreCase("sports"))
-        {
+        if (str.equalsIgnoreCase("sports")) {
             return SPORTS;
         }
-        if (str.equalsIgnoreCase("music"))
-        {
+        if (str.equalsIgnoreCase("music")) {
             return MUSIC;
         }
-        if (str.equalsIgnoreCase("art"))
-        {
+        if (str.equalsIgnoreCase("art")) {
             return ART;
         }
         return null;

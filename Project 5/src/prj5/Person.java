@@ -7,14 +7,12 @@ package prj5;
  * Class for a person. Each person holds data on themselves and their responses
  * to all of the songs
  * 
- * @author Ben Bilbro
+ * @author Ben Bilbro (benb16), Sean Seth(ssean7), Tej Patel (tej0126)
  *
  * @version 04.19.17
  */
-public class Person
-{
+public class Person {
 
-    private int id;
     private String[] responses;
     private MajorEnum major;
     private HobbyEnum hobby;
@@ -34,13 +32,10 @@ public class Person
      *            array of strings of the persons responses to songs
      */
     public Person(
-        int id,
         MajorEnum major,
         RegionEnum region,
         HobbyEnum hobby,
-        String[] responses)
-    {
-        this.id = id;
+        String[] responses) {
         this.major = major;
         this.hobby = hobby;
         this.region = region;
@@ -53,8 +48,7 @@ public class Person
      * 
      * @return Major enum of the persons major
      */
-    public MajorEnum getMajor()
-    {
+    public MajorEnum getMajor() {
         return this.major;
     }
 
@@ -64,8 +58,7 @@ public class Person
      * 
      * @return Hobby enum of the persons hobby
      */
-    public HobbyEnum getHobby()
-    {
+    public HobbyEnum getHobby() {
         return this.hobby;
     }
 
@@ -75,8 +68,7 @@ public class Person
      * 
      * @return Region enum of the persons region
      */
-    public RegionEnum getRegion()
-    {
+    public RegionEnum getRegion() {
         return this.region;
     }
 
@@ -86,8 +78,7 @@ public class Person
      * 
      * @return String[] array of responses to songs
      */
-    public String[] getResponses()
-    {
+    public String[] getResponses() {
         return this.responses;
     }
 
@@ -99,10 +90,9 @@ public class Person
      *            song Id to check for heard
      * @return boolean true or false
      */
-    public String getHeard(int id)
-    {
-        if (responses.length > id)
-        {
+    public String getHeard(int id) {
+        // makes sure the id isn't outside the array
+        if (responses.length > id) {
             String[] strArr = responses[id].split(",");
             return strArr[0];
         }
@@ -117,26 +107,15 @@ public class Person
      *            song ID to check for liked
      * @return boolean true or false
      */
-    public String getLiked(int id)
-    {
-        if (responses.length > id)
-        {
+    public String getLiked(int id) {
+        // makes sure the id isn't outside the array
+        if (responses.length > id) {
+            // splits the responses array (Yes,No) by the comma
             String[] strArr = responses[id].split(",");
             return strArr[1];
         }
+        // if the id is greater than the array it returns a blank string
         return "";
-    }
-
-
-    /**
-     * Returns the identification number for the person in order to keep track
-     * of people
-     * 
-     * @return the identification number
-     */
-    public int getId()
-    {
-        return id;
     }
 
 }
