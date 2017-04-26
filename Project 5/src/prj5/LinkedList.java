@@ -8,13 +8,12 @@ import java.util.Iterator;
 /**
  * This class is meant be the linked implementation of a list
  * 
- * @author Ben Bilbro (benzb), Sean Seth (ssean7), Tej Patel (tej0126)
+ * @author Ben Bilbro (benb16), Sean Seth (ssean7), Tej Patel (tej0126)
  * @version 04.19.17
  * @param <T>
  *            The generic type
  */
-public class LinkedList<T> implements Iterable<T>
-{
+public class LinkedList<T> implements Iterable<T> {
 
     private int length;
     private Node<T> head;
@@ -24,8 +23,7 @@ public class LinkedList<T> implements Iterable<T>
     /**
      * Creates a new LinkedList
      */
-    public LinkedList()
-    {
+    public LinkedList() {
         clear();
     }
 
@@ -35,8 +33,7 @@ public class LinkedList<T> implements Iterable<T>
      * 
      * @return the number of elements in the list
      */
-    public int getLength()
-    {
+    public int getLength() {
         return length;
     }
 
@@ -46,8 +43,7 @@ public class LinkedList<T> implements Iterable<T>
      * 
      * @return True if empty, false if not
      */
-    public boolean isEmpty()
-    {
+    public boolean isEmpty() {
         return length == 0;
     }
 
@@ -58,20 +54,16 @@ public class LinkedList<T> implements Iterable<T>
      * @param anEntry
      *            The specified element to be added to the list
      */
-    public void add(T anEntry)
-    {
-        if (anEntry != null)
-        {
+    public void add(T anEntry) {
+        if (anEntry != null) {
             Node<T> newNode = new Node<T>(anEntry);
             // If the list is empty the head and tail can be set to the same
             // node, only the tail needs to be changed
-            if (isEmpty())
-            {
+            if (isEmpty()) {
                 head = newNode;
                 tail = newNode;
             }
-            else
-            {
+            else {
                 tail.next = newNode;
                 tail = tail.next;
             }
@@ -83,8 +75,7 @@ public class LinkedList<T> implements Iterable<T>
     /**
      * Removes all elements from the linked chain and resets the length to 0
      */
-    public void clear()
-    {
+    public void clear() {
         length = 0;
         head = null;
         tail = null;
@@ -96,14 +87,12 @@ public class LinkedList<T> implements Iterable<T>
      * 
      * @return an array of all of the elements in the list
      */
-    public Object[] toArray()
-    {
+    public Object[] toArray() {
         @SuppressWarnings("unchecked")
         Object[] toArr = (T[])new Object[getLength()];
-        int i = 0;
+        int i = 0; // index for nodes
         Node<T> curr = head;
-        while (curr != null && i < getLength())
-        {
+        while (curr != null) {
             toArr[i] = curr.data;
             curr = curr.next;
             i++;
@@ -119,9 +108,19 @@ public class LinkedList<T> implements Iterable<T>
      * @return an Iterator that will traverse a list with the generic type T
      *         element
      */
+    public Iterator<T> iteratorIndex(int index) {
+        return new ListIterator(index);
+    }
+
+
+    /**
+     * Creates a new Iterator for the linked list
+     * 
+     * @return an Iterator that will traverse a list with the generic type T
+     *         element
+     */
     @Override
-    public Iterator<T> iterator()
-    {
+    public Iterator<T> iterator() {
         return new ListIterator();
     }
 
@@ -132,18 +131,25 @@ public class LinkedList<T> implements Iterable<T>
      * 
      * @author Ben Bilbro (benzb), Sean Seth (ssean7), Tej Patel (tej0126)
      */
-    private class ListIterator implements Iterator<T>
-    {
+    private class ListIterator implements Iterator<T> {
 
         private Node<T> current;
 
 
-        /*
+        /**
          * Creates a new ListIterator
          */
-        public ListIterator()
-        {
+        public ListIterator() {
+            this(0);
+
+        }
+
+
+        public ListIterator(int index) {
             current = head;
+            for (int i = 0; i < index; i++) {
+                current = current.next;
+            }
         }
 
 
@@ -153,13 +159,8 @@ public class LinkedList<T> implements Iterable<T>
          * @return True if there are more elements ahead, false if not
          */
         @Override
-        public boolean hasNext()
-        {
-            if (current == null)
-            {
-                return false;
-            }
-            return true;
+        public boolean hasNext() {
+            return current != null;
 
         }
 
@@ -170,8 +171,8 @@ public class LinkedList<T> implements Iterable<T>
          * @return The data in the Node
          */
         @Override
-        public T next()
-        {
+        public T next() {
+            // saves data to a temp variable.
             T temp = current.data;
             current = current.next;
             return temp;
@@ -190,9 +191,8 @@ public class LinkedList<T> implements Iterable<T>
      * @param <T>
      *            The generic type
      */
-    @SuppressWarnings("hiding")
-    private class Node<T>
-    {
+
+    private class Node<E> {
         private T data;
         private Node<T> next;
 
@@ -204,8 +204,7 @@ public class LinkedList<T> implements Iterable<T>
          * @param dataPortion
          *            The data to be stored in the node
          */
-        private Node(T dataPortion)
-        {
+        private Node(T dataPortion) {
             this(dataPortion, null);
         }
 
@@ -218,8 +217,7 @@ public class LinkedList<T> implements Iterable<T>
          * @param nextNode
          *            the reference to the next node in the list
          */
-        private Node(T newData, Node<T> nextNode)
-        {
+        private Node(T newData, Node<T> nextNode) {
             data = newData;
             next = nextNode;
         }

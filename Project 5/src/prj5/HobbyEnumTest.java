@@ -3,7 +3,7 @@ package prj5;
 /**
  * class that tests the different HobbyEnums
  * 
- * @author Ben Bilbro (benzb), Sean Seth (ssean7), Tej Patel (tej0126)
+ * @author Ben Bilbro (benb16), Sean Seth (ssean7), Tej Patel (tej0126)
  * @version 04.19.17
  */
 public class HobbyEnumTest extends student.TestCase

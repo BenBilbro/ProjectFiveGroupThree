@@ -9,12 +9,11 @@ import java.util.Iterator;
  * This class contains the implementation using a list of people to calculate
  * the number of people who have heard and liked a song for each attribute
  * 
- * @author Ben Bilbro (benzb), Sean Seth (ssean7), Tej Patel (tej0126)
+ * @author Ben Bilbro (benb16), Sean Seth (ssean7), Tej Patel (tej0126)
  * @version 04.19.17
  *
  */
-public class PersonList
-{
+public class PersonList {
 
     private static LinkedList<Person> pList;
 
@@ -25,8 +24,7 @@ public class PersonList
      * @param personList
      *            A list of all of the valid people in the parsed data
      */
-    public PersonList(LinkedList<Person> personList)
-    {
+    public PersonList(LinkedList<Person> personList) {
         pList = personList;
     }
 
@@ -40,40 +38,40 @@ public class PersonList
      * @return an array of four integers that contains the totals for the number
      *         of people who have heard the specified song for each hobby
      */
-    public static int[] getHobbyHTotal(int id)
-    {
+    public static int[] getHobbyHTotal(int id) {
         int read = 0;
         int art = 0;
         int music = 0;
         int sport = 0;
         int[] hobbyTotal = new int[4];
         Iterator<Person> iter = pList.iterator();
-
-        while (iter.hasNext())
-        {
+        // iterates through and if a person responded to the song then they are
+        // added to each hobby's total. used for percentages
+        while (iter.hasNext()) {
             Person temp = iter.next();
-            if (!temp.getHeard(id).equals(" "))
-            {
-                if (temp.getHobby() != null)
-                {
-                    switch (temp.getHobby())
-                    {
-                        case READING:
-                            read++;
-                            break;
-                        case ART:
-                            art++;
-                            break;
-                        case MUSIC:
-                            music++;
-                            break;
-                        case SPORTS:
-                            sport++;
-                            break;
-                    }
+            if (!temp.getHeard(id).equals(" ")) {
+
+                // depending on the hobby each int is incremented
+                switch (temp.getHobby()) {
+                    case READING:
+                        read++;
+                        break;
+                    case ART:
+                        art++;
+                        break;
+                    case MUSIC:
+                        music++;
+                        break;
+                    case SPORTS:
+                        sport++;
+                        break;
+                    default:
+                        break;
                 }
             }
         }
+
+        // makes an array filled with total responders for each hobby per song
         hobbyTotal[0] = read;
         hobbyTotal[1] = art;
         hobbyTotal[2] = sport;
@@ -91,8 +89,7 @@ public class PersonList
      * @return an array of four integers that contains the totals for the number
      *         of people who have liked the specified song for each hobby
      */
-    public static int[] getHobbyLTotal(int id)
-    {
+    public static int[] getHobbyLTotal(int id) {
         int read = 0;
         int art = 0;
         int music = 0;
@@ -101,31 +98,33 @@ public class PersonList
 
         Iterator<Person> iter = pList.iterator();
 
-        while (iter.hasNext())
-        {
+        // iterates through and if a person responded to the song then they are
+        // added to each hobby's total. used for percentages
+        while (iter.hasNext()) {
             Person temp = iter.next();
-            if (!temp.getLiked(id).equals(" "))
-            {
-                if (temp.getHobby() != null)
-                {
-                    switch (temp.getHobby())
-                    {
-                        case READING:
-                            read++;
-                            break;
-                        case ART:
-                            art++;
-                            break;
-                        case MUSIC:
-                            music++;
-                            break;
-                        case SPORTS:
-                            sport++;
-                            break;
-                    }
+            if (!temp.getLiked(id).equals(" ")) {
+
+                // depending on the hobby each int is incremented
+                switch (temp.getHobby()) {
+                    case READING:
+                        read++;
+                        break;
+                    case ART:
+                        art++;
+                        break;
+                    case MUSIC:
+                        music++;
+                        break;
+                    case SPORTS:
+                        sport++;
+                        break;
+                    default:
+                        break;
                 }
             }
         }
+
+        // makes an array filled with total responders for each hobby per song
         hobbyTotal[0] = read;
         hobbyTotal[1] = art;
         hobbyTotal[2] = sport;
@@ -144,41 +143,40 @@ public class PersonList
      * @return an array of four integers that contains the totals for the number
      *         of people who have heard the specified song for each major
      */
-    public static int[] getMajorHTotal(int id)
-    {
+    public static int[] getMajorHTotal(int id) {
         int math = 0;
         int compSci = 0;
         int otherEnge = 0;
         int other = 0;
         int[] majorTotal = new int[4];
         Iterator<Person> iter = pList.iterator();
-
-        while (iter.hasNext())
-        {
+        // iterates through and if a person responded to the song then they are
+        // added to each hobby's total. used for percentages
+        while (iter.hasNext()) {
             Person temp = iter.next();
-            if (!temp.getHeard(id).equals(" "))
-            {
-                if (temp.getMajor() != null)
-                {
-                    switch (temp.getMajor())
-                    {
-                        case MATH_CMDA:
-                            math++;
-                            break;
-                        case COMP_SCI:
-                            compSci++;
-                            break;
-                        case OTHER_ENGE:
-                            otherEnge++;
-                            break;
-                        case OTHER:
-                            other++;
-                            break;
-                    }
+            if (!temp.getHeard(id).equals(" ")) {
+
+                // depending on the hobby each int is incremented
+                switch (temp.getMajor()) {
+                    case MATH_CMDA:
+                        math++;
+                        break;
+                    case COMP_SCI:
+                        compSci++;
+                        break;
+                    case OTHER_ENGE:
+                        otherEnge++;
+                        break;
+                    case OTHER:
+                        other++;
+                        break;
+                    default:
+                        break;
                 }
             }
         }
 
+        // makes an array filled with total responders for each hobby per song
         majorTotal[0] = math;
         majorTotal[1] = compSci;
         majorTotal[2] = otherEnge;
@@ -197,8 +195,7 @@ public class PersonList
      * @return an array of four integers that contains the totals for the number
      *         of people who have liked the specified song for each major
      */
-    public static int[] getMajorLTotal(int id)
-    {
+    public static int[] getMajorLTotal(int id) {
         int math = 0;
         int compSci = 0;
         int otherEnge = 0;
@@ -206,32 +203,33 @@ public class PersonList
         int[] majorTotal = new int[4];
 
         Iterator<Person> iter = pList.iterator();
-
-        while (iter.hasNext())
-        {
+        // iterates through and if a person responded to the song then they are
+        // added to each hobby's total. used for percentages
+        while (iter.hasNext()) {
             Person temp = iter.next();
-            if (!temp.getLiked(id).equals(" "))
-            {
-                if (temp.getMajor() != null)
-                {
-                    switch (temp.getMajor())
-                    {
-                        case MATH_CMDA:
-                            math++;
-                            break;
-                        case COMP_SCI:
-                            compSci++;
-                            break;
-                        case OTHER_ENGE:
-                            otherEnge++;
-                            break;
-                        case OTHER:
-                            other++;
-                            break;
-                    }
+            if (!temp.getLiked(id).equals(" ")) {
+
+                // depending on the hobby each int is incremented
+                switch (temp.getMajor()) {
+                    case MATH_CMDA:
+                        math++;
+                        break;
+                    case COMP_SCI:
+                        compSci++;
+                        break;
+                    case OTHER_ENGE:
+                        otherEnge++;
+                        break;
+                    case OTHER:
+                        other++;
+                        break;
+                    default:
+                        break;
                 }
             }
         }
+
+        // makes an array filled with total responders for each hobby per song
         majorTotal[0] = math;
         majorTotal[1] = compSci;
         majorTotal[2] = otherEnge;
@@ -250,40 +248,38 @@ public class PersonList
      * @return an array of four integers that contains the totals for the number
      *         of people who have heard the specified song for each region
      */
-    public static int[] getRegionHTotal(int id)
-    {
+    public static int[] getRegionHTotal(int id) {
         int northW = 0;
         int southE = 0;
         int other = 0;
         int out = 0;
         int[] regionTotal = new int[4];
         Iterator<Person> iter = pList.iterator();
-
-        while (iter.hasNext())
-        {
+        // iterates through and if a person responded to the song then they are
+        // added to each hobby's total. used for percentages
+        while (iter.hasNext()) {
             Person temp = iter.next();
-            if (!temp.getHeard(id).equals(" "))
-            {
-                if (temp.getRegion() != null)
-                {
-                    switch (temp.getRegion())
-                    {
-                        case NORTHEAST:
-                            northW++;
-                            break;
-                        case SOUTHEAST:
-                            southE++;
-                            break;
-                        case OTHER_US:
-                            other++;
-                            break;
-                        case OUTSIDE_US:
-                            out++;
-                            break;
-                    }
+            if (!temp.getHeard(id).equals(" ")) {
+                switch (temp.getRegion()) {
+                    case NORTHEAST:
+                        northW++;
+                        break;
+                    case SOUTHEAST:
+                        southE++;
+                        break;
+                    case OTHER_US:
+                        other++;
+                        break;
+                    case OUTSIDE_US:
+                        out++;
+                        break;
+                    default:
+                        break;
                 }
             }
         }
+
+        // makes an array filled with total responders for each hobby per song
         regionTotal[0] = northW;
         regionTotal[1] = southE;
         regionTotal[2] = other;
@@ -302,8 +298,7 @@ public class PersonList
      * @return an array of four integers that contains the totals for the number
      *         of people who have liked the specified song for each region
      */
-    public static int[] getRegionLTotal(int id)
-    {
+    public static int[] getRegionLTotal(int id) {
         int northW = 0;
         int southE = 0;
         int other = 0;
@@ -311,32 +306,33 @@ public class PersonList
         int[] regionTotal = new int[4];
 
         Iterator<Person> iter = pList.iterator();
-
-        while (iter.hasNext())
-        {
+        // iterates through and if a person responded to the song then they are
+        // added to each hobby's total. used for percentages
+        while (iter.hasNext()) {
             Person temp = iter.next();
-            if (!temp.getLiked(id).equals(" "))
-            {
-                if (temp.getRegion() != null)
-                {
-                    switch (temp.getRegion())
-                    {
-                        case NORTHEAST:
-                            northW++;
-                            break;
-                        case SOUTHEAST:
-                            southE++;
-                            break;
-                        case OTHER_US:
-                            other++;
-                            break;
-                        case OUTSIDE_US:
-                            out++;
-                            break;
-                    }
+            if (!temp.getLiked(id).equals(" ")) {
+
+                // depending on the hobby each int is incremented
+                switch (temp.getRegion()) {
+                    case NORTHEAST:
+                        northW++;
+                        break;
+                    case SOUTHEAST:
+                        southE++;
+                        break;
+                    case OTHER_US:
+                        other++;
+                        break;
+                    case OUTSIDE_US:
+                        out++;
+                        break;
+                    default:
+                        break;
                 }
             }
         }
+
+        // makes an array filled with total responders for each hobby per song
         regionTotal[0] = northW;
         regionTotal[1] = southE;
         regionTotal[2] = other;
