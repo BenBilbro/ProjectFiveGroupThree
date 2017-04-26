@@ -57,6 +57,20 @@ public class LinkedListTest extends student.TestCase {
         assertEquals(1, list.getLength());
 
     }
+    
+    /**
+     * Tests if the iterator goes to the correct position
+     */
+    public void testIteratorIndex()
+    {
+        list.add("Bob");
+        list.add("Rob");
+        list.add("Cob");
+        
+        Iterator<String> iter = list.iteratorIndex(1);
+        
+        assertEquals("Rob", iter.next());
+    }
 
 
     /**

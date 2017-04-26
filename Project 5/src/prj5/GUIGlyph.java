@@ -15,11 +15,11 @@ import CS2114.TextShape;
  * @author Ben Bilbro (benb16), Sean Seth (ssean7), Tej Patel (tej0126)
  * @version 04.19.17
  */
-public class GUIGlyph {
+public class GUIGlyph
+{
 
     private static final int BAR_WIDTH = 100;
     private Song song;
-
     private Shape purpleLBar;
     private Shape blueLBar;
     private Shape orangeLBar;
@@ -29,18 +29,8 @@ public class GUIGlyph {
     private Shape orangeRBar;
     private Shape greenRBar;
     private Shape blackBar;
-
     private TextShape title;
     private TextShape variableText;
-
-
-    /**
-     * Creates a default glyph object (temporary for submission)
-     */
-    public GUIGlyph() {
-        // default Glyph
-    }
-
 
     /**
      * Creates a new Glyph object with a song passed to its
@@ -49,7 +39,8 @@ public class GUIGlyph {
      *            the song associated to the data that will be displayed
      * 
      */
-    public GUIGlyph(Song song) {
+    public GUIGlyph(Song song)
+    {
         this.song = song;
     }
 
@@ -59,11 +50,22 @@ public class GUIGlyph {
      * 
      * @return the song with the glyph
      */
-    public Song getSong() {
+    public Song getSong()
+    {
         return song;
     }
 
-    public Shape[] getMajorShapes(String str) {
+
+    /**
+     * Returns the shapes associated to the current glyph's calculated data for
+     * every person in a certain major
+     * 
+     * @param str
+     *            The correct subtitle for the specified sort
+     * @return An array of all of the needed shapes for the glyph
+     */
+    public Shape[] getMajorShapes(String str)
+    {
         int[][] majorArr = song.sortByMajor();
         int cmdaMathH = majorArr[0][0];
         int compSciH = majorArr[0][1];
@@ -87,18 +89,23 @@ public class GUIGlyph {
         greenRBar = new Shape(0, 0, otherL * BAR_WIDTH / 100, 10, Color.GREEN);
         blackBar = new Shape(0, 0, 5, 40, Color.BLACK);
         title = new TextShape(0, 0, song.getTitle());
-        if (str != null) {
-            if (str.equals("Date")) {
+        if (str != null)
+        {
+            if (str.equals("Date"))
+            {
                 variableText = new TextShape(0, 0, "year: " + song.getDate());
             }
-            else if (str.equals("Genre")) {
+            else if (str.equals("Genre"))
+            {
                 variableText = new TextShape(0, 0, "genre: " + song.getGenre());
             }
-            else {
+            else
+            {
                 variableText = new TextShape(0, 0, "By: " + song.getArtist());
             }
         }
-        else {
+        else
+        {
             variableText = new TextShape(0, 0, "By: " + song.getArtist());
         }
         Shape[] majorShapes = new Shape[11];
@@ -118,7 +125,16 @@ public class GUIGlyph {
     }
 
 
-    public Shape[] getRegionShapes(String str) {
+    /**
+     * Returns the shapes associated to the current glyph's calculated data for
+     * every person in a certain region
+     * 
+     * @param str
+     *            The correct subtitle for the specified sort
+     * @return An array of all of the needed shapes for the glyph
+     */
+    public Shape[] getRegionShapes(String str)
+    {
 
         int[][] regionArr = song.sortByRegion();
 
@@ -144,18 +160,23 @@ public class GUIGlyph {
         greenRBar = new Shape(0, 0, outL * BAR_WIDTH / 100, 10, Color.GREEN);
         blackBar = new Shape(0, 0, 5, 40, Color.BLACK);
         title = new TextShape(0, 0, song.getTitle());
-        if (str != null) {
-            if (str.equals("Date")) {
+        if (str != null)
+        {
+            if (str.equals("Date"))
+            {
                 variableText = new TextShape(0, 0, "year: " + song.getDate());
             }
-            else if (str.equals("Genre")) {
+            else if (str.equals("Genre"))
+            {
                 variableText = new TextShape(0, 0, "genre: " + song.getGenre());
             }
-            else {
+            else
+            {
                 variableText = new TextShape(0, 0, "By: " + song.getArtist());
             }
         }
-        else {
+        else
+        {
             variableText = new TextShape(0, 0, "By: " + song.getArtist());
         }
 
@@ -176,7 +197,16 @@ public class GUIGlyph {
     }
 
 
-    public Shape[] getHobbyShapes(String str) {
+    /**
+     * Returns the shapes associated to the current glyph's calculated data for
+     * every person in a certain hobby
+     * 
+     * @param str
+     *            The correct subtitle for the specified sort
+     * @return An array of all of the needed shapes for the glyph
+     */
+    public Shape[] getHobbyShapes(String str)
+    {
         int[][] hobbyArr = song.sortByHobby();
 
         int readH = hobbyArr[0][0];
@@ -201,18 +231,23 @@ public class GUIGlyph {
         greenRBar = new Shape(0, 0, sportL * BAR_WIDTH / 100, 10, Color.GREEN);
         blackBar = new Shape(0, 0, 5, 40, Color.BLACK);
         title = new TextShape(0, 0, song.getTitle());
-        if (str != null) {
-            if (str.equals("Date")) {
+        if (str != null)
+        {
+            if (str.equals("Date"))
+            {
                 variableText = new TextShape(0, 0, "year: " + song.getDate());
             }
-            else if (str.equals("Genre")) {
+            else if (str.equals("Genre"))
+            {
                 variableText = new TextShape(0, 0, "genre: " + song.getGenre());
             }
-            else {
+            else
+            {
                 variableText = new TextShape(0, 0, "By: " + song.getArtist());
             }
         }
-        else {
+        else
+        {
             variableText = new TextShape(0, 0, "By: " + song.getArtist());
         }
         Shape[] hobbyShapes = new Shape[11];

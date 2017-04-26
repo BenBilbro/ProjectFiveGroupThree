@@ -4,12 +4,18 @@
 package prj5;
 
 /**
- * @author seans
- *
+ * This class contains the implementation for a list of glyphs as well as the
+ * sorting for the glyphs
+ * 
+ * @author Ben Bilbro (benb16), Sean Seth (ssean7), Tej Patel (tej0126)
+ * @version 04.19.17
  */
 public class GlyphList extends LinkedList<GUIGlyph>
 {
 
+    /**
+     * Creates a new GlyphList object
+     */
     public GlyphList()
     {
         super();

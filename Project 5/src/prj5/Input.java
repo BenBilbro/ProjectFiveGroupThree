@@ -22,10 +22,10 @@ public class Input {
     public static void main(String[] args) {
         // uses command line arguments
         if (args.length == 2) {
-            new ProjectRunner(args[0], args[1]);
+            new DataProcessor(args[0], args[1]);
         }
         else {
-            new ProjectRunner("MusicSurveyData.csv", "SongList.csv");
+            new DataProcessor("MusicSurveyData2017S.csv", "SongList2017S.csv");
         }
     }
 }

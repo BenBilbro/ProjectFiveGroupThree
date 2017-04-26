@@ -6,31 +6,47 @@ package prj5;
 /**
  * This class is used to compare the attributes of the songs
  * 
- * @author Sean Seth
- * @version 04.21.17
+ * @author Ben Bilbro (benb16), Sean Seth (ssean7), Tej Patel (tej0126)
+ * @version 04.19.17
  *
  */
 public class CompareSong
 {
 
+    /**
+     * This method compares two glyphs based on the specified attribute
+     * 
+     * @param str
+     *            The attribute that is to be compared
+     * @param o1
+     *            The glyph that will compare
+     * @param o2
+     *            The glyph that will be compared
+     * @return the respective location of the attribute based on alphabetical
+     *         /ascending numeric sorting
+     */
     public int compare(String str, GUIGlyph o1, GUIGlyph o2)
     {
         int compareVal = 0;
-        if (str.equals("Artist"))
+        if (str.equalsIgnoreCase("Artist"))
         {
             compareVal = compareArtist(o1, o2);
         }
-        else if (str.equals("Date"))
+        else if (str.equalsIgnoreCase("Date"))
         {
             compareVal = compareDate(o1, o2);
         }
-        else if (str.equals("Genre"))
+        else if (str.equalsIgnoreCase("Genre"))
         {
             compareVal = compareGenre(o1, o2);
         }
-        else if (str.equals("Title"))
+        else if (str.equalsIgnoreCase("Title"))
         {
             compareVal = compareTitle(o1, o2);
+        }
+        else
+        {
+            throw new IllegalArgumentException();
         }
 
         return compareVal;

@@ -38,7 +38,7 @@ public class GUIProjectWindow
     private Iterator<GUIGlyph> iter;
     private int iteratorIndex;
     private Class<?> currentEnum = null;
-    private final int numSongs = ProjectRunner.numSongs;
+    private final int numSongs = DataProcessor.numSongs;
     private String currSort;
     private TextShape firstAttribute;
     private TextShape secondAttribute;
@@ -234,7 +234,7 @@ public class GUIProjectWindow
             iteratorIndex -= glyphsPerPage * 2;
         }
 
-        iter = gList.iteratorInt(iteratorIndex);
+        iter = gList.iteratorIndex(iteratorIndex);
         initializeGUIGlyphs(currentEnum);
     }
 
@@ -258,7 +258,7 @@ public class GUIProjectWindow
                 iteratorIndex -= glyphsPerPage;
             }
 
-            iter = gList.iteratorInt(iteratorIndex);
+            iter = gList.iteratorIndex(iteratorIndex);
             initializeGUIGlyphs(currentEnum);
         }
     }
@@ -283,7 +283,7 @@ public class GUIProjectWindow
                 iteratorIndex -= glyphsPerPage;
             }
 
-            iter = gList.iteratorInt(iteratorIndex);
+            iter = gList.iteratorIndex(iteratorIndex);
             initializeGUIGlyphs(currentEnum);
         }
     }
@@ -308,7 +308,7 @@ public class GUIProjectWindow
                 iteratorIndex -= glyphsPerPage;
             }
 
-            iter = gList.iteratorInt(iteratorIndex);
+            iter = gList.iteratorIndex(iteratorIndex);
             initializeGUIGlyphs(currentEnum);
         }
     }

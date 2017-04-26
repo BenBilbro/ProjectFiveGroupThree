@@ -13,7 +13,7 @@ import java.util.Iterator;
  * @param <T>
  *            The generic type
  */
-public class LinkedList<T extends Object> implements Iterable<T> {
+public class LinkedList<T> implements Iterable<T> {
 
     private int length;
     private Node<T> head;
@@ -108,7 +108,7 @@ public class LinkedList<T extends Object> implements Iterable<T> {
      * @return an Iterator that will traverse a list with the generic type T
      *         element
      */
-    public Iterator<T> iteratorInt(int index) {
+    public Iterator<T> iteratorIndex(int index) {
         return new ListIterator(index);
     }
 
