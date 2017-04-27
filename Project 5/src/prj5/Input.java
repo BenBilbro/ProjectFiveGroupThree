@@ -24,6 +24,7 @@ public class Input {
         if (args.length == 2) {
             new DataProcessor(args[0], args[1]);
         }
+        // default files ran
         else {
             new DataProcessor("MusicSurveyData2017S.csv", "SongList2017S.csv");
         }

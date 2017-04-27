@@ -93,9 +93,11 @@ public class Person {
     public String getHeard(int id) {
         // makes sure the id isn't outside the array
         if (responses.length > id) {
+            // splits the responses array (Yes,No) by the comma
             String[] strArr = responses[id].split(",");
             return strArr[0];
         }
+        // if the id is greater than the array it returns a blank string
         return "";
     }
 

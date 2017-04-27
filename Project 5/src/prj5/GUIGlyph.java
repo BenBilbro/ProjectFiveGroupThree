@@ -15,8 +15,7 @@ import CS2114.TextShape;
  * @author Ben Bilbro (benb16), Sean Seth (ssean7), Tej Patel (tej0126)
  * @version 04.19.17
  */
-public class GUIGlyph
-{
+public class GUIGlyph {
 
     private static final int BAR_WIDTH = 100;
     private Song song;
@@ -32,6 +31,7 @@ public class GUIGlyph
     private TextShape title;
     private TextShape variableText;
 
+
     /**
      * Creates a new Glyph object with a song passed to its
      * 
@@ -39,8 +39,7 @@ public class GUIGlyph
      *            the song associated to the data that will be displayed
      * 
      */
-    public GUIGlyph(Song song)
-    {
+    public GUIGlyph(Song song) {
         this.song = song;
     }
 
@@ -50,8 +49,7 @@ public class GUIGlyph
      * 
      * @return the song with the glyph
      */
-    public Song getSong()
-    {
+    public Song getSong() {
         return song;
     }
 
@@ -64,8 +62,16 @@ public class GUIGlyph
      *            The correct subtitle for the specified sort
      * @return An array of all of the needed shapes for the glyph
      */
-    public Shape[] getMajorShapes(String str)
-    {
+    public Shape[] getMajorShapes(String str) {
+        // creates a 2D array layed out as follows :
+
+        // HEARD ROW [Major 1] [Major 2] [Major 3] [Major 4]
+        //
+        // LIKED ROW [Major 1] [Major 2] [Major 3] [Major 4]
+        //
+        // each value is the total number of people who have heard or liked this
+        // song categorized by major
+
         int[][] majorArr = song.sortByMajor();
         int cmdaMathH = majorArr[0][0];
         int compSciH = majorArr[0][1];
@@ -75,6 +81,8 @@ public class GUIGlyph
         int compSciL = majorArr[1][1];
         int otherEngeL = majorArr[1][2];
         int otherL = majorArr[1][3];
+
+        // creates the shapes at the corresponding length to the data
         purpleLBar = new Shape(0, 0, cmdaMathH * BAR_WIDTH / 100, 10,
             Color.MAGENTA);
         blueLBar = new Shape(0, 0, compSciH * BAR_WIDTH / 100, 10, Color.BLUE);
@@ -89,25 +97,22 @@ public class GUIGlyph
         greenRBar = new Shape(0, 0, otherL * BAR_WIDTH / 100, 10, Color.GREEN);
         blackBar = new Shape(0, 0, 5, 40, Color.BLACK);
         title = new TextShape(0, 0, song.getTitle());
-        if (str != null)
-        {
-            if (str.equals("Date"))
-            {
+        // displays the correct sort of the glyphs depending on the str passed
+        if (str != null) {
+            if (str.equals("Date")) {
                 variableText = new TextShape(0, 0, "year: " + song.getDate());
             }
-            else if (str.equals("Genre"))
-            {
+            else if (str.equals("Genre")) {
                 variableText = new TextShape(0, 0, "genre: " + song.getGenre());
             }
-            else
-            {
+            else {
                 variableText = new TextShape(0, 0, "By: " + song.getArtist());
             }
         }
-        else
-        {
+        else {
             variableText = new TextShape(0, 0, "By: " + song.getArtist());
         }
+        // populates the Shape[] to return to the window
         Shape[] majorShapes = new Shape[11];
         majorShapes[0] = purpleLBar;
         majorShapes[1] = blueLBar;
@@ -133,8 +138,15 @@ public class GUIGlyph
      *            The correct subtitle for the specified sort
      * @return An array of all of the needed shapes for the glyph
      */
-    public Shape[] getRegionShapes(String str)
-    {
+    public Shape[] getRegionShapes(String str) {
+        // creates a 2D array layed out as follows :
+
+        // HEARD ROW [Region 1] [Region 2] [Region 3] [Region 4]
+        //
+        // LIKED ROW [Region 1] [Region 2] [Region 3] [Region 4]
+        //
+        // each value is the total number of people who have heard or liked this
+        // song categorized by region
 
         int[][] regionArr = song.sortByRegion();
 
@@ -146,6 +158,8 @@ public class GUIGlyph
         int southL = regionArr[1][1];
         int otherL = regionArr[1][2];
         int outL = regionArr[1][3];
+
+        // creates the shapes at the corresponding length to the data
         purpleLBar = new Shape(0, 0, northH * BAR_WIDTH / 100, 10,
             Color.MAGENTA);
         blueLBar = new Shape(0, 0, southH * BAR_WIDTH / 100, 10, Color.BLUE);
@@ -160,26 +174,24 @@ public class GUIGlyph
         greenRBar = new Shape(0, 0, outL * BAR_WIDTH / 100, 10, Color.GREEN);
         blackBar = new Shape(0, 0, 5, 40, Color.BLACK);
         title = new TextShape(0, 0, song.getTitle());
-        if (str != null)
-        {
-            if (str.equals("Date"))
-            {
+
+        // displays the correct glyph sort depending on the str passed in
+        if (str != null) {
+            if (str.equals("Date")) {
                 variableText = new TextShape(0, 0, "year: " + song.getDate());
             }
-            else if (str.equals("Genre"))
-            {
+            else if (str.equals("Genre")) {
                 variableText = new TextShape(0, 0, "genre: " + song.getGenre());
             }
-            else
-            {
+            else {
                 variableText = new TextShape(0, 0, "By: " + song.getArtist());
             }
         }
-        else
-        {
+        else {
             variableText = new TextShape(0, 0, "By: " + song.getArtist());
         }
 
+        // populates the Shape[] array with the correct shapes to be returned
         Shape[] regionShapes = new Shape[11];
         regionShapes[0] = purpleLBar;
         regionShapes[1] = blueLBar;
@@ -205,8 +217,16 @@ public class GUIGlyph
      *            The correct subtitle for the specified sort
      * @return An array of all of the needed shapes for the glyph
      */
-    public Shape[] getHobbyShapes(String str)
-    {
+    public Shape[] getHobbyShapes(String str) {
+
+        // creates a 2D array layed out as follows :
+
+        // HEARD ROW [Hobby 1] [Hobby 2] [Hobby 3] [Hobby 4]
+        //
+        // LIKED ROW [Hobby 1] [Hobby 2] [Hobby 3] [Hobby 4]
+        //
+        // each value is the total number of people who have heard or liked this
+        // song categorized by hobby
         int[][] hobbyArr = song.sortByHobby();
 
         int readH = hobbyArr[0][0];
@@ -217,6 +237,8 @@ public class GUIGlyph
         int artL = hobbyArr[1][1];
         int musicL = hobbyArr[1][2];
         int sportL = hobbyArr[1][3];
+
+        // creates the shapes at the corresponding length to the data
         purpleLBar = new Shape(0, 0, readH * BAR_WIDTH / 100, 10,
             Color.MAGENTA);
         blueLBar = new Shape(0, 0, artH * BAR_WIDTH / 100, 10, Color.BLUE);
@@ -231,25 +253,24 @@ public class GUIGlyph
         greenRBar = new Shape(0, 0, sportL * BAR_WIDTH / 100, 10, Color.GREEN);
         blackBar = new Shape(0, 0, 5, 40, Color.BLACK);
         title = new TextShape(0, 0, song.getTitle());
-        if (str != null)
-        {
-            if (str.equals("Date"))
-            {
+
+        // displays the correct glyph sort depending on the str passed in
+        if (str != null) {
+            if (str.equals("Date")) {
                 variableText = new TextShape(0, 0, "year: " + song.getDate());
             }
-            else if (str.equals("Genre"))
-            {
+            else if (str.equals("Genre")) {
                 variableText = new TextShape(0, 0, "genre: " + song.getGenre());
             }
-            else
-            {
+            else {
                 variableText = new TextShape(0, 0, "By: " + song.getArtist());
             }
         }
-        else
-        {
+        else {
             variableText = new TextShape(0, 0, "By: " + song.getArtist());
         }
+
+        // populates the Shape[] array with the correct shapes to be returned
         Shape[] hobbyShapes = new Shape[11];
         hobbyShapes[0] = purpleLBar;
         hobbyShapes[1] = blueLBar;

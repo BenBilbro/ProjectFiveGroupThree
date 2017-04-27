@@ -49,6 +49,21 @@ public class GlyphListTest extends student.TestCase
         assertEquals("1", glyph1.getSong().getDate());
         assertEquals("2", glyph2.getSong().getDate());
 
+        Exception thrown = null;
+        try
+        {
+            list.sortGlyph("");
+        }
+        catch (IllegalArgumentException e)
+        {
+            thrown = e;
+        }
+        assertNotNull(thrown);
+        assertTrue(thrown instanceof IllegalArgumentException);
+        
+        list.add(new GUIGlyph(new Song(1, "A", "B", "A", "2", null, null)));
+        list.sortGlyph("artist");
+
     }
 
 }

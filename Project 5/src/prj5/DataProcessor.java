@@ -12,7 +12,6 @@ import java.util.Scanner;
  * The purpose of this class is to parse the given survey data, going through
  * people's responses and the different songs. From that data, a list of valid
  * people and GUIGlyphs is created
- * of
  * 
  * @author Ben Bilbro (benb16), Sean Seth (ssean7), Tej Patel (tej0126)
  * @version 04.19.17
@@ -21,13 +20,15 @@ import java.util.Scanner;
 public class DataProcessor {
     private GlyphList gList;
     private LinkedList<Person> pList;
-    private Scanner pReader;
-    private Scanner mReader;
+
+    /**
+     * The number of songs that are being processed
+     */
     public static int numSongs;
 
 
     /**
-     * Creates a new FileReader object
+     * Creates a new DataProcessor object
      * 
      * @param filePeople
      *            the information about the people and their responses
@@ -56,6 +57,9 @@ public class DataProcessor {
     private void parsePeople(String file) {
         pList = new LinkedList<Person>();
         // MAJOR, REGION, HOBBY, RESPONSES
+        // order the scanner reads data
+        Scanner pReader = null;
+
         try {
             pReader = new Scanner(new File(file));
         }
@@ -110,16 +114,16 @@ public class DataProcessor {
                 // starting at the first response and going to the end of array
                 for (int i = 5; i < strArr.length - 1; i += 2) {
 
-                    // changes all blank responses to a space for statistics
-                    // later
+                    // changes all blank responses to a space for easier
+                    // Processing later
                     if (strArr[i].equals("")) {
                         heard = " ";
                     }
                     else {
                         heard = strArr[i];
                     }
-                    // changes all blank responses to a space for statistics
-                    // later
+                    // changes all blank responses to a space for easier
+                    // Processing later
                     if (strArr[i + 1].equals("")) {
                         liked = " ";
                     }
@@ -127,7 +131,10 @@ public class DataProcessor {
                         liked = strArr[i + 1];
                     }
                     // files the responses array from 0 to numSongs with heard
-                    // and liked response per person
+                    // and liked response per person in the form
+                    // (Reponse1,Response2)
+                    // combines the persons heard and liked answer in order to
+                    // easily parsed responses based on song number
                     responses[(i - 5) / 2] = heard + "," + liked;
                 }
                 tempPerson = new Person(major, region, hobby, responses);
@@ -151,6 +158,7 @@ public class DataProcessor {
     private GlyphList parseSongs(String file) {
         gList = new GlyphList();
 
+        Scanner mReader = null;
         try {
             mReader = new Scanner(new File(file));
         }
@@ -173,13 +181,14 @@ public class DataProcessor {
             strArr = mReader.nextLine().split(",");
 
             // goes through each song, incrementing by 5
+            // increment by 5 because each line has 5 attributes per song
             for (int i = 0; i < strArr.length; i += 5) {
                 title = strArr[i];
                 artist = strArr[i + 1];
                 date = strArr[i + 2];
                 genre = strArr[i + 3];
                 heardList = makeHeardList(id); // helper methods called that
-                                               // passes in ID
+                                               // passes in ID of current song
                 likedList = makeLikedList(id);
             }
             Song tempSong = new Song(id, artist, genre, title, date, heardList,
@@ -196,7 +205,7 @@ public class DataProcessor {
 
 
     /**
-     * Creates a list of people who have heard a song
+     * Creates a list of people who have heard a specific song
      * 
      * @param id
      *            the identifier for the specific song
@@ -227,7 +236,7 @@ public class DataProcessor {
      * @return a list a people who have liked the song associated to the id
      */
     private LinkedList<Person> makeLikedList(int id) {
-        LinkedList<Person> LList = new LinkedList<Person>();
+        LinkedList<Person> lList = new LinkedList<Person>();
         Iterator<Person> iter = pList.iterator();
 
         // iterating through all the people from the survey
@@ -236,10 +245,30 @@ public class DataProcessor {
             // calls the persons getHeard method that returns the response to
             // that specific song
             if (temp.getLiked(id).equals("Yes")) {
-                LList.add(temp);
+                lList.add(temp);
             }
         }
-        return LList;
+        return lList;
+    }
+
+
+    /**
+     * Returns the person list
+     * 
+     * @return a list of all valid people
+     */
+    public LinkedList<Person> getPersonList() {
+        return pList;
+    }
+
+
+    /**
+     * Returns the song/glyph list
+     * 
+     * @return the list of all glyphs
+     */
+    public GlyphList getGlyphList() {
+        return gList;
     }
 
 

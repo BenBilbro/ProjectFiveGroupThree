@@ -19,8 +19,7 @@ import CS2114.WindowSide;
  * @version April 19, 2017
  *
  */
-public class GUIProjectWindow
-{
+public class GUIProjectWindow {
 
     private final int glyphsPerPage = 9;
     private GlyphList gList;
@@ -53,8 +52,7 @@ public class GUIProjectWindow
      * @param GUIGlyphList
      *            is the list of GUIGlyphs that will be displayed
      */
-    public GUIProjectWindow(GlyphList GUIGlyphList)
-    {
+    public GUIProjectWindow(GlyphList GUIGlyphList) {
 
         this.gList = GUIGlyphList;
         iter = gList.iterator();
@@ -71,34 +69,34 @@ public class GUIProjectWindow
 
     /**
      * Helper method that initializes the GUIGlyphs and displays them
+     * 
+     * @param Class
+     *            being the current Enum based sort (hobby region major)
      */
-    private void initializeGUIGlyphs(Class<?> Class)
-    {
-        if (Class != null)
-        {
+    private void initializeGUIGlyphs(Class<?> Class) {
+        if (Class != null) {
+            // clears the screen of glyphs
             removeAllGlyphs();
             int offsetX = 235;
             int offsetY = 100;
             int refX = 150;
             int refY = 50;
-            for (int j = 1; j <= 9; j++)
-            {
-                if (iter.hasNext())
-                {
+            // iterates one page of glyphs at a time if the iterator has next
+            for (int j = 1; j <= glyphsPerPage; j++) {
+                if (iter.hasNext()) {
                     GUIGlyph glyph = iter.next();
                     iteratorIndex++;
                     Shape[] shapes;
 
-                    if (Class.equals(MajorEnum.class))
-                    {
+                    // Calls the glyphs .getEnumShapes which returns all
+                    // neccessary bars and shapes in a glyph
+                    if (Class.equals(MajorEnum.class)) {
                         shapes = glyph.getMajorShapes(currSort);
                     }
-                    else if (Class.equals(RegionEnum.class))
-                    {
+                    else if (Class.equals(RegionEnum.class)) {
                         shapes = glyph.getRegionShapes(currSort);
                     }
-                    else
-                    {
+                    else {
                         shapes = glyph.getHobbyShapes(currSort);
                     }
 
@@ -109,8 +107,7 @@ public class GUIProjectWindow
 
                     int height = 0;
                     // positions left bars
-                    for (int i = 0; i < 4; i++)
-                    {
+                    for (int i = 0; i < 4; i++) {
                         shapes[i].setX(refX - shapes[i].getWidth());
                         shapes[i].setY(refY + height);
                         window.addShape(shapes[i]);
@@ -118,8 +115,7 @@ public class GUIProjectWindow
                     }
                     height = 0;
                     // positions right bars
-                    for (int i = 4; i < 8; i++)
-                    {
+                    for (int i = 4; i < 8; i++) {
                         shapes[i].setX(refX + blackBar.getWidth());
                         shapes[i].setY(refY + height);
                         window.addShape(shapes[i]);
@@ -140,97 +136,135 @@ public class GUIProjectWindow
                     window.addShape(shapes[10]);
                 }
 
-                if (j % 3 == 0)
-                {
+                // depending on which object the iterator is on, its coordinates
+                // are offset
+                if (j % 3 == 0) {
+                    // j % 3 is when the iter is at the end of the row
                     refX = 150;
                     refY += offsetY;
                 }
-                else
-                {
+                else {
                     refX += offsetX;
                 }
 
             }
         }
-        prev.enable();
-        next.enable();
-        if (iteratorIndex == numSongs)
-        {
+
+        // disables next if on the last page else enables
+        if (iteratorIndex == numSongs) {
             next.disable();
         }
-        else if (iteratorIndex == glyphsPerPage)
-        {
+        else {
+            next.enable();
+        }
+        // disables prev if on the first page else enables
+        if (iteratorIndex == glyphsPerPage) {
             prev.disable();
         }
-    }
-
-
-    public void clickedSortArtist(Button button)
-    {
-        gList.sortGlyph("Artist");
-
-        currSort = "Artist";
-
-        iter = gList.iterator();
-        iteratorIndex = 0;
-
-        initializeGUIGlyphs(currentEnum);
-    }
-
-
-    public void clickedSortTitle(Button button)
-    {
-        gList.sortGlyph("Title");
-        currSort = "Artist";
-
-        iter = gList.iterator();
-        iteratorIndex = 0;
-
-        initializeGUIGlyphs(currentEnum);
-    }
-
-
-    public void clickedSortDate(Button button)
-    {
-        gList.sortGlyph("Date");
-        currSort = "Date";
-
-        iter = gList.iterator();
-        iteratorIndex = 0;
-
-        initializeGUIGlyphs(currentEnum);
-    }
-
-
-    public void clickedSortGenre(Button button)
-    {
-        gList.sortGlyph("Genre");
-        currSort = "Genre";
-
-        iter = gList.iterator();
-        iteratorIndex = 0;
-
-        initializeGUIGlyphs(currentEnum);
-    }
-
-
-    public void clickedNext(Button button)
-    {
-        if (iteratorIndex != 0)
-        {
-            initializeGUIGlyphs(currentEnum);
+        else {
+            prev.enable();
         }
     }
 
 
-    public void clickedPrevious(Button button)
-    {
-        if (iteratorIndex == numSongs)
-        {
+    /**
+     * Sorts the gList by artist alphabetically
+     * 
+     * @param button
+     *            that is pressed
+     */
+    public void clickedSortArtist(Button button) {
+        gList.sortGlyph("Artist");
+        currSort = "Artist"; // updates currSort
+
+        iter = gList.iterator();
+        // resets the iterator to start at beginning
+        iteratorIndex = 0;
+
+        initializeGUIGlyphs(currentEnum);
+    }
+
+
+    /**
+     * Sorts the gList by Title alphabetically
+     * 
+     * @param button
+     *            being pressed
+     */
+    public void clickedSortTitle(Button button) {
+        gList.sortGlyph("Title");
+        currSort = "Artist"; // updates currSort
+
+        iter = gList.iterator();
+        // resets the iterator to start at beginning
+        iteratorIndex = 0;
+
+        initializeGUIGlyphs(currentEnum);
+    }
+
+
+    /**
+     * Sorts the gList by dates from earliest to latest
+     * 
+     * @param button
+     *            being pressed
+     */
+    public void clickedSortDate(Button button) {
+        gList.sortGlyph("Date");
+        currSort = "Date"; // updates currSort
+
+        iter = gList.iterator();
+        // resets the iterator to start at beginning
+        iteratorIndex = 0;
+
+        initializeGUIGlyphs(currentEnum);
+    }
+
+
+    /**
+     * Sorts the gList by Genre alphabetically
+     * 
+     * @param button
+     *            being pressed
+     */
+    public void clickedSortGenre(Button button) {
+        gList.sortGlyph("Genre");
+        currSort = "Genre"; // updates currSort
+
+        iter = gList.iterator();
+        // resets the iterator to start at beginning
+        iteratorIndex = 0;
+
+        initializeGUIGlyphs(currentEnum);
+    }
+
+
+    /**
+     * Goes to the next page of glyphs
+     * 
+     * @param button
+     *            being pressed
+     */
+    public void clickedNext(Button button) {
+        initializeGUIGlyphs(currentEnum);
+    }
+
+
+    /**
+     * Goes back a page of glyphs and accounts for being on the last page by
+     * using modulus to subtract the correct number of Glyphs
+     * 
+     * @param button
+     *            being pressed
+     */
+    public void clickedPrevious(Button button) {
+        // uses modulus to only subtract the correct number of glyphs from the
+        // last page
+        if (iteratorIndex == numSongs) {
             iteratorIndex -= ((numSongs % glyphsPerPage) + glyphsPerPage);
         }
-        else
-        {
+        // has to go back 18 glyphs in order to reload the previous page
+        else if (iteratorIndex != 0) {
             iteratorIndex -= glyphsPerPage * 2;
         }
 
@@ -239,22 +273,34 @@ public class GUIProjectWindow
     }
 
 
-    public void clickedRepresentMajor(Button button)
-    {
+    /**
+     * Initializes the glyphs to display data represented by major
+     * 
+     * @param button
+     *            being pressed
+     */
+    public void clickedRepresentMajor(Button button) {
+        // updates which Enum we are sorting by
         currentEnum = MajorEnum.class;
         updateLegend();
-        if (iteratorIndex == 0)
-        {
+        if (iteratorIndex == 0) {
+            // enables all buttons during first click (initialization)
+            sortArtist.enable();
+            sortDate.enable();
+            sortGenre.enable();
+            sortTitle.enable();
             initializeGUIGlyphs(currentEnum);
         }
-        else
-        {
-            if (iteratorIndex == numSongs)
-            {
+        // any time after the first button has been pressed
+        // must only go backwards through the iterator enough to reload the
+        // current page
+        else {
+            // if on the last page only subtract the correct number of glyphs
+            if (iteratorIndex == numSongs) {
                 iteratorIndex -= (numSongs % glyphsPerPage);
             }
-            else
-            {
+            // else subtract normally
+            else {
                 iteratorIndex -= glyphsPerPage;
             }
 
@@ -264,22 +310,33 @@ public class GUIProjectWindow
     }
 
 
-    public void clickedRepresentHobby(Button button)
-    {
+    /**
+     * Initializes the glyphs to display data represented by hobby
+     * 
+     * @param button
+     *            being pressed
+     */
+    public void clickedRepresentHobby(Button button) {
         currentEnum = HobbyEnum.class;
         updateLegend();
-        if (iteratorIndex == 0)
-        {
+        if (iteratorIndex == 0) {
+            // enables all buttons during first click (initialization)
+            sortArtist.enable();
+            sortDate.enable();
+            sortGenre.enable();
+            sortTitle.enable();
             initializeGUIGlyphs(currentEnum);
         }
-        else
-        {
-            if (iteratorIndex == numSongs)
-            {
+        // any time after the first button has been pressed
+        // must only go backwards through the iterator enough to reload the
+        // current page
+        else {
+            // if on the last page only subtract the correct number of glyphs
+            if (iteratorIndex == numSongs) {
                 iteratorIndex -= (numSongs % glyphsPerPage);
             }
-            else
-            {
+            // else subtract normally
+            else {
                 iteratorIndex -= glyphsPerPage;
             }
 
@@ -289,22 +346,33 @@ public class GUIProjectWindow
     }
 
 
-    public void clickedRepresentRegion(Button button)
-    {
+    /**
+     * Initializes the glyphs to display data represented by region
+     * 
+     * @param button
+     *            being pressed
+     */
+    public void clickedRepresentRegion(Button button) {
         currentEnum = RegionEnum.class;
         updateLegend();
-        if (iteratorIndex == 0)
-        {
+        if (iteratorIndex == 0) {
+            // enables all buttons during first click (initialization)
+            sortArtist.enable();
+            sortDate.enable();
+            sortGenre.enable();
+            sortTitle.enable();
             initializeGUIGlyphs(currentEnum);
         }
-        else
-        {
-            if (iteratorIndex == numSongs)
-            {
+        // any time after the first button has been pressed
+        // must only go backwards through the iterator enough to reload the
+        // current page
+        else {
+            // if on the last page only subtract the correct number of glyphs
+            if (iteratorIndex == numSongs) {
                 iteratorIndex -= (numSongs % glyphsPerPage);
             }
-            else
-            {
+            // else subtract normally
+            else {
                 iteratorIndex -= glyphsPerPage;
             }
 
@@ -314,24 +382,33 @@ public class GUIProjectWindow
     }
 
 
-    public void clickedQuit(Button button)
-    {
+    /**
+     * Exits the program
+     * 
+     * @param button
+     *            being pressed
+     */
+    public void clickedQuit(Button button) {
         System.exit(0);
     }
 
 
-    public void removeAllGlyphs()
-    {
+    /**
+     * removes all the glyphs on the window and updates the legend
+     */
+    public void removeAllGlyphs() {
         window.removeAllShapes();
         updateLegend();
     }
 
 
-    public void updateLegend()
-    {
+    /**
+     * updates the legend depending on the current Enum sort
+     */
+    public void updateLegend() {
         initializeLegend();
-        if (currentEnum.equals(HobbyEnum.class))
-        {
+        // changes legend to represent hobby
+        if (currentEnum.equals(HobbyEnum.class)) {
             firstAttribute = new TextShape(780, 185, "Read", Color.MAGENTA);
             secondAttribute = new TextShape(780, 200, "Art", Color.BLUE);
             thirdAttribute = new TextShape(780, 215, "Sports", Color.ORANGE);
@@ -342,8 +419,8 @@ public class GUIProjectWindow
             window.moveToFront(legendTitle);
             legendTitle.setBackgroundColor(Color.WHITE);
         }
-        else if (currentEnum.equals(MajorEnum.class))
-        {
+        // changes legend to represent major
+        else if (currentEnum.equals(MajorEnum.class)) {
             firstAttribute = new TextShape(780, 185, "Comp Sci", Color.MAGENTA);
             secondAttribute = new TextShape(780, 200, "Other Eng", Color.BLUE);
             thirdAttribute = new TextShape(780, 215, "Math / CMDA",
@@ -355,8 +432,8 @@ public class GUIProjectWindow
             window.moveToFront(legendTitle);
             legendTitle.setBackgroundColor(Color.WHITE);
         }
-        else
-        {
+        // changes legend to represent region
+        else {
             firstAttribute = new TextShape(780, 185, "Northeast",
                 Color.MAGENTA);
             secondAttribute = new TextShape(780, 200, "Southeast", Color.BLUE);
@@ -370,11 +447,13 @@ public class GUIProjectWindow
             legendTitle.setBackgroundColor(Color.WHITE);
         }
 
+        // correctly sets the colors
         firstAttribute.setBackgroundColor(Color.WHITE);
         secondAttribute.setBackgroundColor(Color.WHITE);
         thirdAttribute.setBackgroundColor(Color.WHITE);
         fourthAttribute.setBackgroundColor(Color.WHITE);
 
+        // adds the shapes and moves the to the front
         window.addShape(firstAttribute);
         window.addShape(secondAttribute);
         window.addShape(thirdAttribute);
@@ -386,28 +465,35 @@ public class GUIProjectWindow
     }
 
 
-    public void initializeLegend()
-    {
+    /**
+     * Initializes the legend except for the Enum dependent text shapes
+     */
+    public void initializeLegend() {
+        // creates sample song title
         TextShape legendSongTitle = new TextShape(795, 245, "Song Title",
             Color.BLACK);
         legendSongTitle.setBackgroundColor(Color.WHITE);
         window.addShape(legendSongTitle);
         window.moveToFront(legendSongTitle);
 
+        // creates sample heard text
         TextShape legendHeard = new TextShape(790, 275, "Heard", Color.BLACK);
         legendHeard.setBackgroundColor(Color.WHITE);
         window.addShape(legendHeard);
         window.moveToFront(legendHeard);
 
+        // creates sample liked text
         TextShape legendLiked = new TextShape(840, 275, "Likes", Color.BLACK);
         legendLiked.setBackgroundColor(Color.WHITE);
         window.addShape(legendLiked);
         window.moveToFront(legendLiked);
 
+        // creates sample bar to represent a glyph
         Shape blackBar = new Shape(835, 265, 5, 40, Color.BLACK);
         window.addShape(blackBar);
         window.moveToFront(blackBar);
 
+        // the box surrounding the legend
         Shape outline = new Shape(775, 160, 115, 155, Color.BLACK);
         outline.setBackgroundColor(Color.WHITE);
         window.addShape(outline);
@@ -418,8 +504,7 @@ public class GUIProjectWindow
     /**
      * Initializes the buttons and displays them
      */
-    private void initializeButtons()
-    {
+    private void initializeButtons() {
         // creates all buttons
         prev = new Button("<-- Prev");
         sortArtist = new Button("Sort by Artist Name");
@@ -443,6 +528,14 @@ public class GUIProjectWindow
         repMajor.onClick(this, "clickedRepresentMajor");
         repRegion.onClick(this, "clickedRepresentRegion");
         quit.onClick(this, "clickedQuit");
+
+        // disables certain buttons before first click
+        sortArtist.disable();
+        sortDate.disable();
+        sortGenre.disable();
+        sortTitle.disable();
+        prev.disable();
+        next.disable();
 
         // adds all buttons
         window.addButton(prev, WindowSide.NORTH);
