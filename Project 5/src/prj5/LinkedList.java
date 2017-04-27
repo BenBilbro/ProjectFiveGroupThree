@@ -105,6 +105,8 @@ public class LinkedList<T> implements Iterable<T> {
     /**
      * Creates a new Iterator for the linked list
      * 
+     * @param index
+     *            The point at which the iterator will begin in the list
      * @return an Iterator that will traverse a list with the generic type T
      *         element
      */
@@ -145,6 +147,12 @@ public class LinkedList<T> implements Iterable<T> {
         }
 
 
+        /**
+         * Creates a new ListIterator starting at a certain point in the list
+         * 
+         * @param index
+         *            The starting point of the iterator
+         */
         public ListIterator(int index) {
             current = head;
             for (int i = 0; i < index; i++) {
